@@ -23,8 +23,19 @@ function setLineDesign(svg) {
     })
 }
 
+/**
+ * 
+ * @param {HTMLElement} svg #mapsvg element
+ * @param {Array} flows 各送電線の潮流データ
+ */
+function paintFlow(svg, flows) {
+
+}
+
 window.onload = function() {
     const mapsvg_wrapper = document.getElementById('mapsvg_wrapper');
     const mapsvg = mapsvg_wrapper.contentDocument.getElementById('mapsvg');
     setLineDesign(mapsvg);
+    const flows = {'minamiiwaki': 2000};
+    paintFlow(mapsvg, flows);
 }

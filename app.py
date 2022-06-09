@@ -109,7 +109,7 @@ class Flow(Resource):
 app = Flask(__name__)
 api = Api(app)
 api.add_resource(Line, '/line')
-api.add_resource(Flow, '/flow')
+# api.add_resource(Flow, '/flow')
 
 @app.route('/')
 def index():

@@ -1,6 +1,7 @@
 <script setup>
+
 // 1 GW の送電線を、太さ何 px の線で表示するか
-const WIDTH_PER_GW = 5;
+const WIDTH_PER_GW = 4;
 
 // 潮流を表す破線の、1サイクルの長さ[px]
 const DASH_LEN = 10;
@@ -41,15 +42,21 @@ function calcDashoffset() {
 <template>
   <polyline
     fill="none"
-    stroke="rgb(100,100,100)"
+    stroke="rgb(150,150,150)"
+    :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
+    :stroke-width="calcStrokeWidth() + 6"
+  />
+  <polyline
+    fill="none"
+    stroke="rgb(255,255,255)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="calcStrokeWidth()"
   />
   <polyline
     fill="none"
-    stroke="rgb(248,169,13)"
+    stroke="rgb(248,100,0)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
-    :stroke-width="calcStrokeWidth() * 0.8"
+    :stroke-width="calcStrokeWidth()"
     :stroke-dasharray="calcDasharray()"
     :stroke-dashoffset="calcDashoffset()"
   />

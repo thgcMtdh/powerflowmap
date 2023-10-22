@@ -35,7 +35,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append({"name": "新岡部線", "amounts": get_line_value(df_occto, "新岡部線")})
     flows.append({"name": "新吾妻線", "amounts": get_line_value(df_occto, "新吾妻線")})
     flows.append({"name": "西上武幹線", "amounts": get_line_value(df_occto, "西上武幹線")})
-    flows.append({"name": "新榛名線", "amounts": get_line_value(df_occto, "房総線")})
+    flows.append({"name": "新榛名線", "amounts": get_line_value(df_occto, "新榛名線")})
     flows.append({"name": "新秦野線", "amounts": get_line_value(df_occto, "新秦野線")})
     flows.append({"name": "新多摩線", "amounts": get_line_value(df_occto, "新多摩線")})
     flows.append({"name": "新秩父線", "amounts": get_line_value(df_occto, "新秩父線")})

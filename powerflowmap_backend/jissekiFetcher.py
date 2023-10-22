@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import codecs
 import datetime
 import os
 import platform
@@ -31,7 +32,7 @@ AREANAME_DICT = {
 def main() -> None:
     area = "tokyo"
     the_date = datetime.date(2023, 4, 1)
-    while the_date <= datetime.date(2023, 4, 5):  # datetime.date.today():
+    while the_date <= datetime.date(2023, 4, 1):  # datetime.date.today():
         print(the_date)
         try:
             fetch_csv(the_date, area)
@@ -152,7 +153,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
             time.sleep(1)
 
         # ======
-        # ファイルのリネーム
+        # ファイルのリネーム。
         # ======
 
         # 保存する際のファイル名は jisseki_area_20YYmmdd.csv
@@ -168,6 +169,9 @@ def fetch_csv(date: datetime.date, area: str) -> None:
         downloaded_file_path = os.path.join(DATA_DIR, downloaded_file)
         os.rename(downloaded_file_path, target_file_path)
 
+        # エンコーディングをUTF-8に変更
+        convert_sjis_to_unicode(target_file_path)
+
 
 def get_latest_file(folder: str) -> str:
     """
@@ -182,6 +186,23 @@ def get_latest_file(folder: str) -> str:
 
     # 最も更新日時の新しいファイルを返す
     return files[-1]
+
+
+def convert_sjis_to_unicode(file_path):
+    """
+    file_path (絶対パス) で指定されたファイルのエンコードを、Shift-JISから
+    UTF-8に変換して上書き保存する
+    """
+    # shift_jisで開く
+    with codecs.open(file_path, "r", "shift_jis") as f:
+        row_data = []
+        for row in f:
+            row_data.append(row)
+
+    # utf-8 に変換して保存
+    with codecs.open(file_path, "w", "utf-8") as f:
+        for row in row_data:
+            f.write(row)
 
 
 if __name__ == "__main__":

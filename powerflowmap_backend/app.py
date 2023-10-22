@@ -15,31 +15,6 @@ LINE_FILE_PATH = "data/soudensen.csv"
 FLOW_FOLDER_PATH = "data/jisseki"
 
 
-class Line(Resource):
-    def __init__(self) -> None:
-        super().__init__()
-
-        # 送電線情報の読み込み
-        self.df_line = pd.read_csv(LINE_FILE_PATH)
-
-    def get(self):
-        """
-        すべての送電線情報を取得する
-        """
-
-        df_res = self.df_line.dropna(subset=["direction"])  # labelがNaNである列は除外
-        return [
-            {
-                "name": df_res.iloc[i]["name"],
-                "from": df_res.iloc[i]["from"],
-                "to": df_res.iloc[i]["to"],
-                "voltage": int(df_res.iloc[i]["電圧(kV)"]),
-                "capacity": int(df_res.iloc[i]["運用容量(MW)"]),
-            }
-            for i in range(len(df_res.index))
-        ]
-
-
 class Flow(Resource):
     def __init__(self) -> None:
         super().__init__()
@@ -86,7 +61,6 @@ class Flow(Resource):
 
 app = Flask(__name__)
 api = Api(app)
-api.add_resource(Line, "/api/line")
 api.add_resource(Flow, "/api/flow/<string:area>/<int:year>/<int:month>/<int:day>")
 
 

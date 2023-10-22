@@ -5,8 +5,8 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import './assets/main.css'
 import Line from "./components/Line.vue";
 import Station from "./components/Station.vue"
-import lineCoordinates from "./assets/lineCoordinates.json";
-import stationCoordinates from "./assets/stationCoordinates.json"
+import lines from "./assets/lines.json"
+import stations from "./assets/stations.json"
 
 const areaOptions = [
   {key: "tokyo", name: "東京"}
@@ -66,7 +66,6 @@ const area = ref("tokyo");
 const date = ref(new Date(2022, 6 - 1, 2));
 const timeIndex = ref(0);  // 0から47
 
-const lineSpecs = ref(null);
 const flowData = ref(null);
 const animationTimeStep = ref(0);  // 0～100の数値。破線の進行を指定する
 
@@ -109,11 +108,11 @@ function decreaseDate() {
 
 function getCapacity(lineName) {
   // 設備データから、送電線名が一致するものを抜き出して、運用容量を返す
-  const spec = lineSpecs.value.find((element) => (element.name == lineName));
-  if (spec == undefined) {
+  const line = lines.find((element) => (element.name == lineName));
+  if (line == undefined) {
     return 0;
   }
-  return spec.capacity;
+  return line.capacity;
 }
 
 function getFlow(lineName) {
@@ -128,20 +127,6 @@ function getFlow(lineName) {
     return 0
   }
   return amount;
-}
-
-function fetchLineSpecs() {
-  fetch("/api/line")
-    .then((response) => {
-      console.log(response)
-      if (!response.ok) {  // 指定されたデータが無いとき
-        lineSpecs.value = null;
-      }
-      return response.json()
-    })
-    .then((data) => {
-      lineSpecs.value = data
-    });
 }
 
 function fetchFlowData() {
@@ -165,7 +150,6 @@ function animate() {
   }
 }
 
-fetchLineSpecs()
 fetchFlowData();
 
 setInterval(animate, 100);
@@ -244,11 +228,11 @@ setInterval(animate, 100);
       </div>
     </div>
 
-    <!-- 送電線情報が取得できないとき -->
-    <div v-if="!lineSpecs || !flowData">データ読み込み中...</div>
+    <!-- 潮流情報が取得できないとき -->
+    <div v-if="!flowData">データ読み込み中...</div>
 
-    <!-- 送電線情報が取得出来ていれば描画する -->
-    <div v-if="lineSpecs && flowData" class="svg-wrapper">
+    <!-- 潮流情報が取得出来ていれば描画する -->
+    <div v-if="flowData" class="svg-wrapper">
 
       <svg viewBox="0 0 1200 1500" xmlns="http://www.w3.org/2000/svg" version="1.1">
 
@@ -260,7 +244,7 @@ setInterval(animate, 100);
         </rect>
 
         <Line
-          v-for="item in lineCoordinates"
+          v-for="item in lines"
           :key="item.name"
           :name="item.name"
           :capacity="getCapacity(item.name)"
@@ -270,7 +254,7 @@ setInterval(animate, 100);
         />
 
         <Station
-          v-for="item in stationCoordinates"
+          v-for="item in stations"
           :key="item.name"
           :name="item.name"
           :point="item.point"

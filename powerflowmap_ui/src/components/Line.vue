@@ -4,7 +4,7 @@
 const WIDTH_PER_GW = 4;
 
 // 潮流を表す破線の、1サイクルの長さ[px]
-const DASH_LEN = 10;
+const DASH_LEN = 20;
 
 const props = defineProps({
   name: String, // 送電線名

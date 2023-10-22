@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+}
+
+.title-bar {
+    background-color: chocolate;
+    padding-top: 6px;
+    padding-bottom: 12px;
+}
+
+.title-bar h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 6px;
+    text-align: center;
+    font-weight: normal;
+    color: yellow
+}
+
+.title-bar h2 {
+    font-size: 1.25rem;
+    margin: 0;
+    text-align: center;
+    font-weight: normal;
+    color: white
+}
+
+.text-box-introduction {
+    font-size: 1.1rem;
+}
+
+.text-box-warning {
+    border: red 5px solid;
+    padding: 1px 12px;
+}
+
+.text-box-attention {
+    background-color: rgb(249, 226, 210);
+    padding: 1px 12px;
+    margin: 12px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+.form {
+    margin-top: 24px;
+}
+
+.form-item {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.form-item-label {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #212121;
+}
+
+.form-item-input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 48px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+}
+
+.button-align-area {
+    display: flex;
+    gap: 12px;
+}
+
+.button-basic {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 12px;
+    padding: 6px;
+    font-size: 1rem;
+    border: 4px solid rgb(249, 226, 210);
+    color: #212121;
+    text-align: center;
+    overflow-wrap: anywhere;
+    background-color:rgb(249, 226, 210);
+}
+@media (any-hover: hover) {
+    .button-basic {
+        transition: background-color 0.2s;
+    }
+    .button-basic:hover {
+        background-color: #fff;
+    }
+}
+
+.svg-wrapper {
+    width: 100%;
+    margin-top: 12px;
+}
+svg {
+    width: 100%;
+    height: auto;
+}

@@ -121,8 +121,8 @@
     },
     {
         "name": "新飯能",
-        "point": { "x": 350, "y": 800 },
-        "labelPosition": { "x": -70, "y": 40 }
+        "point": { "x": 300, "y": 750 },
+        "labelPosition": { "x": -100, "y": 0 }
     },
     {
         "name": "新豊洲",

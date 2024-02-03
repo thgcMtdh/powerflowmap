@@ -34,12 +34,8 @@ def main() -> None:
     area = "tokyo"
     the_date = datetime.date(2023, 10, 24)
     while the_date <= datetime.date(2023, 10, 25):  # datetime.date.today():
-        print(the_date)
-        try:
-            fetch_csv(the_date, area)
-            the_date = the_date + datetime.timedelta(days=1)
-        except Exception as e:
-            print(f"{e.__class__.__name__}: {e}")
+        fetch_csv(the_date, area)
+        the_date = the_date + datetime.timedelta(days=1)
 
 
 def fetch_csv(date: datetime.date, area: str) -> None:
@@ -53,15 +49,16 @@ def fetch_csv(date: datetime.date, area: str) -> None:
     area: 取得したいエリア。"tokyo", "tohoku" などローマ字で指定する
     """
 
-    # .envファイルと環境変数の読み込み
+    # 保存先の設定
     dotenv.load_dotenv()
-    DATA_DIR = os.getenv("DATA_DIR")  # Windows だと / ではなく \\ で区切らないとダメっぽい
+    flow_dir = os.getenv("FLOW_FOLDER_PATH") # Windows だと / ではなく \\ で区切らないとダメっぽい
+    save_dir = os.path.join(flow_dir, area)  # エリアごとに別の保存先フォルダを指定
 
     # ChromeDriver のオプション設定
     options = Options()
 
     # ファイルのダウンロード先を環境変数で指定
-    options.add_experimental_option("prefs", {"download.default_directory": DATA_DIR})
+    options.add_experimental_option("prefs", {"download.default_directory": save_dir})
 
     # ラズパイの場合の設定
     if platform.system() == "Linux" and platform.machine() == "armv7l":
@@ -153,7 +150,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
 
         # ダウンロードが終わるまで待機
         time.sleep(1)
-        while [x for x in os.listdir(DATA_DIR) if x.endswith(("crdownload", "tmp"))]:
+        while [x for x in os.listdir(save_dir) if x.endswith(("crdownload", "tmp"))]:
             time.sleep(1)
 
         # ======
@@ -162,15 +159,15 @@ def fetch_csv(date: datetime.date, area: str) -> None:
 
         # 保存する際のファイル名は jisseki_area_20YYmmdd.csv
         target_file = f'jisseki_{area}_{date.strftime("%Y%m%d")}.csv'
-        target_file_path = os.path.join(DATA_DIR, target_file)
+        target_file_path = os.path.join(save_dir, target_file)
 
         # 対象日のCSVファイルがすでに存在している場合、上書きするために一度削除
         if os.path.exists(target_file_path):
             os.remove(target_file_path)
 
         # ダウンロードしたファイルのファイル名を変更
-        downloaded_file = get_latest_file(DATA_DIR)
-        downloaded_file_path = os.path.join(DATA_DIR, downloaded_file)
+        downloaded_file = get_latest_file(save_dir)
+        downloaded_file_path = os.path.join(save_dir, downloaded_file)
         os.rename(downloaded_file_path, target_file_path)
 
         # エンコーディングをUTF-8に変更

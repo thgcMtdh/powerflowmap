@@ -121,6 +121,15 @@ export function calcFlowDataTokyo(csv) {
         )
     })
 
+    // 西群馬開閉所の出入りから、南新潟幹線+新新潟幹線の和が求まる
+    flows.push({
+        'name': '南新潟幹線＋新新潟幹線',
+        'amounts': arraySum(
+            [rawdata['西群馬幹線'], rawdata['西上武幹線'], rawdata['新吾妻線'], rawdata['東群馬幹線']],
+            [1, 1, -1, -1]
+        )
+    })
+
     // 新いわき開閉所の出入りから、福島幹線(山)+福島東幹線(山)+広野火力線の和が求まる
     // 常時開放の予備用東北-東京連系線であるいわき幹線には潮流が流れない前提
     // https://www.occto.or.jp/iinkai/kouikikeitouseibi/2015/files/seibi_10_01.pdf)

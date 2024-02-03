@@ -4,7 +4,7 @@
         "isSwitch": true,
         "point": { "x": 1000, "y": 50 },
         "size": 40,
-        "labelPosition": { "x": -100, "y": -40 }
+        "labelPosition": { "x": -110, "y": 0 }
     },
     {
         "name": "新いわき",
@@ -25,7 +25,7 @@
         "isSwitch": true,
         "point": { "x": 150, "y": 350 },
         "size": 40,
-        "labelPosition": { "x": -80, "y": -40 }
+        "labelPosition": { "x": -100, "y": 0 }
     },
     {
         "name": "新秩父",
@@ -74,7 +74,7 @@
         "name": "新岡部",
         "point": { "x": 350, "y": 550 },
         "size": 40,
-        "labelPosition": { "x": 0, "y": 40 }
+        "labelPosition": { "x": -100, "y": 0 }
     },
     {
         "name": "新榛名",

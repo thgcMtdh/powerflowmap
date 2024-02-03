@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import Legend from './components/Legend.vue';
 import Line from "./components/Line.vue";
 import LineNoFlow from "./components/LineNoFlow.vue";
 import Station from "./components/Station.vue";
@@ -161,21 +162,21 @@ setInterval(animate, 50);
 
 <template>
   <div class="title-bar">
-    <h1>電力の流れを見てみよう！</h1>
-    <h2>地内基幹送電線現在潮流可視化サイト beta</h2>
+    <h1>基幹送電線潮流実績可視化サイト beta</h1>
+    <h2>～電気の流れを見てみよう～</h2>
   </div>
 
   <div class="container" ref="containerDiv">
 
     <div class="text-box-introduction">
-      <p>主要な送電線の、30分ごとの電力潮流（電力の流れ）を表示しています。データとして、電力広域的運営推進機関(OCCTO)が公開している「地内基幹送電線潮流実績」を用いています。</p>
+      <p>主要な送電線の30分ごとの電力潮流（電力の流れ）を表示しています。</p>
     </div>
 
     <div class="text-box-warning">
       <h3>免責事項</h3>
       <ul>
-        <li>本サイトで公開しているデータの正確性については保証いたしません。表示されているデータには、一部 OCCTO から直接取得できず推定した値が含まれますので、あくまでも「イメージ図」としてお考え下さい。</li>
-        <li>特に、<span style="font-weight: bold;">本サイトの情報について、関係する事業者（OCCTO、発電事業者、送配電事業者など）に問い合わせを行うことは絶対におやめください。</span></li>
+        <li>電力広域的運営推進機関(OCCTO)が公開している「地内基幹送電線潮流実績」を用いていますが、データの正確性については保証いたしません。あくまでもイメージとしてお考え下さい。</li>
+        <li>特に、<span style="font-weight: bold;">本サイトの情報について、関係する事業者に問い合わせを行うことはご遠慮ください。</span></li>
       </ul>
     </div>
 
@@ -295,8 +296,20 @@ setInterval(animate, 50);
           :label-position="item.labelPosition"
           :label-size="20"
         />
+
+        <!-- 凡例 -->
+        <Legend />
+
       </svg>
     </div>
-    <p><span style="font-size: 0.8em;">Source code can be found on <a href="https://github.com/thgcMtdh/powerflowmap">GitHub</a>.<br>ウェブ開発に不慣れなため特にリクエストの処理周りで不備が多いです。改善をお待ちしております</span></p>
+    <p>
+      備考
+      <ul>
+        <li>潮流実績が非公開の送電線及び変電所は灰色で示した</li>
+        <li>外輪系統の主要部のみを表示している。都市部の系統図は現在作成中</li>
+
+      </ul>
+    </p>
+    <p><span style="font-size: 0.8em;">Source code can be found on <a href="https://github.com/thgcMtdh/powerflowmap">GitHub</a>.</span></p>
   </div>
 </template>

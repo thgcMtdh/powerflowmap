@@ -7,6 +7,7 @@ import Station from "./components/Station.vue"
 import lines from "./assets/lines.json"
 import stations from "./assets/stations.json"
 import './assets/main.css'
+import { calcFlowData } from './scripts/calcFlowData.js'
 
 const areaOptions = [
   {key: "tokyo", name: "東京"}
@@ -136,13 +137,12 @@ function fetchFlowData() {
   fetch(`/api/flow/${area.value}/${formatDate(date.value)}`)
     .then((response) => {
       if (!response.ok) {  // 指定日のデータが無いとき404
-        flowData.value = null;
+        return null;
       }
-      return response.json()
+      return response.text()
     })
-    .then((data) => {
-      flowData.value = data;
-      console.log(data);
+    .then((csv) => {
+      flowData.value = calcFlowData(area.value, csv);
     });
 }
 

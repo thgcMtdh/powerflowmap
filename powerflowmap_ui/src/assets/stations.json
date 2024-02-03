@@ -1,26 +1,31 @@
 [
     {
         "name": "南いわき",
-        "point": { "x": 1050, "y": 100 },
+        "isSwitch": true,
+        "point": { "x": 1000, "y": 50 },
         "labelPosition": { "x": -100, "y": -40 }
     },
     {
         "name": "新いわき",
+        "isSwitch": true,
         "point": { "x": 1100, "y": 150 },
         "labelPosition": { "x": 0, "y": -50 }
     },
     {
         "name": "新今市",
+        "isSwitch": true,
         "point": { "x": 700, "y": 300 },
         "labelPosition": { "x": 30, "y": 0 }
     },
     {
         "name": "西群馬",
+        "isSwitch": true,
         "point": { "x": 150, "y": 350 },
         "labelPosition": { "x": -80, "y": -40 }
     },
     {
         "name": "新秩父",
+        "isSwitch": true,
         "point": { "x": 200, "y": 700 },
         "labelPosition": { "x": -80, "y": 40 }
     },

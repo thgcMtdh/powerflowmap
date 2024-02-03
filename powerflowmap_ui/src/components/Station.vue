@@ -6,6 +6,8 @@ const SIZE = 40;
 const props = defineProps({
   // 変電所・開閉所名
   name: String,
+  // 開閉所の場合true
+  isSwitch: Boolean,
   // 中心の座標
   point: Object,
   // ラベルの描画位置。
@@ -16,8 +18,6 @@ const props = defineProps({
   labelPosition: Object,
   // ラベルのテキストサイズ
   labelSize: Number,
-  // 運用容量[MW]
-  // capacity: Number,
   // 変電所の潮流[MW]。系統に供給する向きを正、需要を負とする
   // flow: Number,
 });
@@ -34,6 +34,28 @@ const props = defineProps({
     :width="SIZE"
     :height="SIZE"
   />
+
+  <!-- 開閉所を示すバツ印 -->
+  <line
+    v-if="isSwitch"
+    stroke="rgb(150,150,150)"
+    stroke-width="3"
+    :x1="point.x - SIZE / 2"
+    :y1="point.y - SIZE / 2"
+    :x2="point.x + SIZE / 2"
+    :y2="point.y + SIZE / 2"
+  />
+  <line
+    v-if="isSwitch"
+    stroke="rgb(150,150,150)"
+    stroke-width="3"
+    :x1="point.x + SIZE / 2"
+    :y1="point.y - SIZE / 2"
+    :x2="point.x - SIZE / 2"
+    :y2="point.y + SIZE / 2"
+  />
+
+  <!-- 変電所名 -->
   <text
     v-if="labelPosition && labelSize > 0"
     :x="point.x + labelPosition.x"

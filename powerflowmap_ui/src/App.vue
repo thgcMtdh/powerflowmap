@@ -3,8 +3,10 @@ import { ref, watch } from "vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import Line from "./components/Line.vue";
+import LineNoFlow from "./components/LineNoFlow.vue";
 import Station from "./components/Station.vue"
 import lines from "./assets/lines.json"
+import linesNoFlow from "./assets/linesNoFlow.json"
 import stations from "./assets/stations.json"
 import './assets/main.css'
 import { calcFlowData } from './scripts/calcFlowData.js'
@@ -105,15 +107,6 @@ function increaseDate() {
 
 function decreaseDate() {
   date.value = new Date(date.value.setDate(date.value.getDate() - 1))
-}
-
-function getCapacity(lineName) {
-  // 設備データから、送電線名が一致するものを抜き出して、運用容量を返す
-  const line = lines.find((element) => (element.name == lineName));
-  if (line == undefined) {
-    return 0;
-  }
-  return line.capacity;
 }
 
 function getFlow(lineName) {
@@ -256,12 +249,21 @@ setInterval(animate, 50);
           :key="i" :x1="i * 50" :y1="0" :x2="i * 50" :y2="1200" fill="none" stroke="#888"
         />
 
+        <LineNoFlow
+          v-for="item in linesNoFlow"
+          :key="item.name"
+          :name="item.name"
+          :voltage="item.voltage"
+          :capacity="item.capacity"
+          :points="item.points"
+        />
+
         <Line
           v-for="item in lines"
           :key="item.name"
           :name="item.name"
           :voltage="item.voltage"
-          :capacity="getCapacity(item.name)"
+          :capacity="item.capacity"
           :flow="getFlow(item.name)"
           :points="item.points"
           :animation-time-step="animationTimeStep"
@@ -271,6 +273,7 @@ setInterval(animate, 50);
           v-for="item in stations"
           :key="item.name"
           :name="item.name"
+          :is-switch="item.isSwitch"
           :point="item.point"
           :label-position="item.labelPosition"
           :label-size="20"

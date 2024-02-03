@@ -103,5 +103,34 @@ export function calcFlowDataTokyo(csv) {
         )
     });
 
+    // 新榛名変電所の出入りから、玉原線が求まる
+    flows.push({
+        'name': '玉原線',
+        'amounts': arraySum(
+            [rawdata['新吾妻線'], rawdata['新榛名線']],
+            [1, 1]
+        )
+    });
+
+    // 新今市開閉所の出入りから、下郷線が求まる
+    flows.push({
+        'name': "下郷線",
+        "amounts": arraySum(
+            [rawdata['中栃木線'], rawdata['新いわき線']],
+            [1, -1]
+        )
+    })
+
+    // 新いわき開閉所の出入りから、福島幹線(山)+福島東幹線(山)+広野火力線の和が求まる
+    // 常時開放の予備用東北-東京連系線であるいわき幹線には潮流が流れない前提
+    // https://www.occto.or.jp/iinkai/kouikikeitouseibi/2015/files/seibi_10_01.pdf)
+    flows.push({
+        'name': "福島幹線(山)＋福島東幹線(山)＋広野火力線",
+        'amounts': arraySum(
+            [rawdata['新いわき線'], rawdata['福島幹線(中)'], rawdata['福島東幹線(里)'], rawdata['川内線']],
+            [1, 1, 1, -1]
+        )
+    })
+
     return flows;
 }

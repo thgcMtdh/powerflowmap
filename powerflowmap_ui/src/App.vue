@@ -4,12 +4,14 @@ import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import Line from "./components/Line.vue";
 import LineNoFlow from "./components/LineNoFlow.vue";
-import Station from "./components/Station.vue"
-import lines from "./assets/lines.json"
-import linesNoFlow from "./assets/linesNoFlow.json"
-import stations from "./assets/stations.json"
-import './assets/main.css'
-import { calcFlowData } from './scripts/calcFlowData.js'
+import Station from "./components/Station.vue";
+import StationNoFlow from "./components/StationNoFlow.vue";
+import lines from "./assets/lines.json";
+import linesNoFlow from "./assets/linesNoFlow.json";
+import stations from "./assets/stations.json";
+import stationsNoFlow from "./assets/stationsNoFlow.json";
+import './assets/main.css';
+import { calcFlowData } from './scripts/calcFlowData.js';
 
 const areaOptions = [
   {key: "tokyo", name: "東京"}
@@ -269,12 +271,21 @@ setInterval(animate, 50);
           :animation-time-step="animationTimeStep"
         />
 
+        <StationNoFlow
+          v-for="item in stationsNoFlow"
+          :key="item.name"
+          :name="item.name"
+          :point="item.point"
+          :size="item.size"
+        />
+
         <Station
           v-for="item in stations"
           :key="item.name"
           :name="item.name"
           :is-switch="item.isSwitch"
           :point="item.point"
+          :size="item.size"
           :label-position="item.labelPosition"
           :label-size="20"
         />

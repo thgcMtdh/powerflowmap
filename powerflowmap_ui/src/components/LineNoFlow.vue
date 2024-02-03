@@ -27,16 +27,16 @@ const strokeWidth = computed(() => {
   <!-- 外枠のグレーの部分 -->
   <polyline
     fill="none"
-    stroke="rgb(200,200,200)"
+    stroke="rgb(255,245,219)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="strokeWidth + strokeEdgeWidth"
   />
 
   <!-- 塗りつぶしの白い部分 -->
-  <!-- <polyline
+  <polyline
     fill="none"
-    stroke="rgb(170,170,170)"
+    stroke="rgb(220,220,220)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="strokeWidth"
-  /> -->
+  />
 </template>

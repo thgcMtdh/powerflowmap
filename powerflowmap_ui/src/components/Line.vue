@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 
 // 1 GW の送電線を、太さ何 px の線で表示するか
 const WIDTH_PER_GW = 4;
@@ -8,15 +9,22 @@ const DASH_LEN = 20;
 
 const props = defineProps({
   name: String, // 送電線名
+  voltage: Number,  // 電圧[kV]
   capacity: Number, // 運用容量[MW]
   flow: Number, // 現在潮流[MW]。points の始点から終点に流れる向きを正とする
   points: Array, // 描画するときの点列
   animationTimeStep: Number, // 0～100の数値。親から渡す。アニメーションを制御する
 });
 
-function calcStrokeWidth() {
+const strokeEdgeWidth = computed(() => {
+  if (props.voltage == 500) return 8;
+  if (props.voltage == 275) return 5;
+  return 8;
+})
+
+const strokeWidth = computed(() => {
   return (props.capacity / 1000) * WIDTH_PER_GW;
-}
+})
 
 function calcDasharray() {
   // 送電線の利用率を算出。0.9を超える場合は0.9とする
@@ -40,23 +48,28 @@ function calcDashoffset() {
 </script>
 
 <template>
+  <!-- 外枠のグレーの部分 -->
   <polyline
     fill="none"
     stroke="rgb(150,150,150)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
-    :stroke-width="calcStrokeWidth() + 6"
+    :stroke-width="strokeWidth + strokeEdgeWidth"
   />
+
+  <!-- 塗りつぶしの白い部分 -->
   <polyline
     fill="none"
     stroke="rgb(255,255,255)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
-    :stroke-width="calcStrokeWidth()"
+    :stroke-width="strokeWidth"
   />
+
+  <!-- 上を動いているオレンジの潮流 -->
   <polyline
     fill="none"
     stroke="rgb(248,100,0)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
-    :stroke-width="calcStrokeWidth()"
+    :stroke-width="strokeWidth"
     :stroke-dasharray="calcDasharray()"
     :stroke-dashoffset="calcDashoffset()"
   />

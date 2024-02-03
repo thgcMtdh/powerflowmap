@@ -1,106 +1,147 @@
 [
     {
         "name": "南いわき",
-        "point": { "x": 1050, "y": 100 }
+        "point": { "x": 1050, "y": 100 },
+        "labelPosition": { "x": -100, "y": -40 }
     },
     {
         "name": "新いわき",
-        "point": { "x": 1100, "y": 150 }
+        "point": { "x": 1100, "y": 150 },
+        "labelPosition": { "x": 0, "y": -50 }
     },
     {
         "name": "新今市",
-        "point": { "x": 700, "y": 350 }
+        "point": { "x": 700, "y": 300 },
+        "labelPosition": { "x": 30, "y": 0 }
     },
     {
         "name": "西群馬",
-        "point": { "x": 100, "y": 350 }
+        "point": { "x": 150, "y": 350 },
+        "labelPosition": { "x": -80, "y": -40 }
     },
     {
         "name": "新秩父",
-        "point": { "x": 150, "y": 700 }
+        "point": { "x": 200, "y": 700 },
+        "labelPosition": { "x": -80, "y": 40 }
     },
     {
         "name": "新茂木",
-        "point": { "x": 850, "y": 450 }
+        "point": { "x": 850, "y": 450 },
+        "labelPosition": { "x": -100, "y": 0 }
     },
     {
         "name": "新栃木",
-        "point": { "x": 700, "y": 400 }
+        "point": { "x": 700, "y": 400 },
+        "labelPosition": { "x": 30, "y": -40 }
     },
     {
         "name": "新筑波",
-        "point": { "x": 800, "y": 600 }
+        "point": { "x": 800, "y": 600 },
+        "labelPosition": { "x": 0, "y": 40 }
     },
     {
         "name": "新古河",
-        "point": { "x": 700, "y": 650 }
+        "point": { "x": 700, "y": 650 },
+        "labelPosition": { "x": -80, "y": -40 }
     },
     {
         "name": "東群馬",
-        "point": { "x": 350, "y": 400 }
+        "point": { "x": 350, "y": 400 },
+        "labelPosition": { "x": -80, "y": 30 }
     },
     {
         "name": "新新田",
-        "point": { "x": 350, "y": 500 }
+        "point": { "x": 350, "y": 500 },
+        "labelPosition": { "x": 40, "y": 0 }
     },
     {
         "name": "新岡部",
-        "point": { "x": 250, "y": 600 }
+        "point": { "x": 300, "y": 550 },
+        "labelPosition": { "x": 0, "y": 40 }
     },
     {
         "name": "新榛名",
-        "point": { "x": 100, "y": 450 }
+        "point": { "x": 150, "y": 450 },
+        "labelPosition": { "x": -80, "y": 40 }
     },
     {
         "name": "新木更津",
-        "point": { "x": 900, "y": 1200 }
+        "point": { "x": 900, "y": 1200 },
+        "labelPosition": { "x": 30, "y": 0 }
     },
     {
         "name": "房総",
-        "point": { "x": 900, "y": 1100 }
+        "point": { "x": 900, "y": 1100 },
+        "labelPosition": { "x": 30, "y": 0 }
     },
     {
         "name": "新佐原",
-        "point": { "x": 1100, "y": 850 }
+        "point": { "x": 1100, "y": 850 },
+        "labelPosition": { "x": -80, "y": 40 }
     },
     {
         "name": "新京葉",
-        "point": { "x": 900, "y": 850 }
+        "point": { "x": 900, "y": 850 },
+        "labelPosition": { "x": 20, "y": 40 }
     },
     {
         "name": "新野田",
-        "point": { "x": 800, "y": 750 }
+        "point": { "x": 800, "y": 750 },
+        "labelPosition": { "x": 0, "y": -40 }
     },
     {
         "name": "東山梨",
-        "point": { "x": 50, "y": 1000 }
+        "point": { "x": 100, "y": 950 },
+        "labelPosition": { "x": 30, "y": 0 }
     },
     {
         "name": "新富士",
-        "point": { "x": 100, "y": 1100 }
+        "point": { "x": 150, "y": 1100 },
+        "labelPosition": { "x": -70, "y": 40 }
     },
     {
         "name": "新秦野",
-        "point": { "x": 250, "y": 1150 }
+        "point": { "x": 300, "y": 1150 },
+        "labelPosition": { "x": -70, "y": 40 }
     },
     {
         "name": "新多摩",
-        "point": { "x": 200, "y": 900 }
+        "point": { "x": 250, "y": 900 },
+        "labelPosition": { "x": -90, "y": 0 }
     },
     {
         "name": "新坂戸",
-        "point": { "x": 450, "y": 700 }
+        "point": { "x": 450, "y": 700 },
+        "labelPosition": { "x": 30, "y": 0 }
     },
     {
         "name": "新所沢",
-        "point": { "x": 350, "y": 700 }
+        "point": { "x": 350, "y": 700 },
+        "labelPosition": { "x": -100, "y": 0 }
     },
     {
         "name": "新飯能",
-        "point": { "x": 250, "y": 800 }
+        "point": { "x": 350, "y": 800 },
+        "labelPosition": { "x": -70, "y": 40 }
     },
     {
         "name": "新豊洲",
-        "point": { "x": 750, "y": 950 }
+        "point": { "x": 750, "y": 950 },
+        "labelPosition": { "x": 20, "y": 30 }
+    },
+    {
+        "name": "鹿島",
+        "point": { "x": 1150, "y": 800 },
+        "labelPosition": { "x": -70, "y": -10 }
+    },
+    {
+        "name": "那珂",
+        "point": { "x": 1050, "y": 450 },
+        "labelPosition": { "x": -20, "y": 40 }
+    },
+    {
+        "name": "北相模",
+        "point": { "x": 350, "y": 1050 },
+        "labelPosition": { "x": -70, "y": -40 }
     }
 ]

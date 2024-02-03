@@ -32,8 +32,8 @@ AREANAME_DICT = {
 
 def main() -> None:
     area = "tokyo"
-    the_date = datetime.date(2023, 4, 1)
-    while the_date <= datetime.date(2023, 4, 1):  # datetime.date.today():
+    the_date = datetime.date(2023, 10, 24)
+    while the_date <= datetime.date(2023, 10, 25):  # datetime.date.today():
         print(the_date)
         try:
             fetch_csv(the_date, area)

@@ -1,12 +1,12 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-import './assets/main.css'
 import Line from "./components/Line.vue";
 import Station from "./components/Station.vue"
 import lines from "./assets/lines.json"
 import stations from "./assets/stations.json"
+import './assets/main.css'
 
 const areaOptions = [
   {key: "tokyo", name: "東京"}
@@ -63,7 +63,7 @@ const timeOptions = [
 ]
 
 const area = ref("tokyo");
-const date = ref(new Date(2022, 6 - 1, 2));
+const date = ref(new Date(2023, 4 - 1, 1));
 const timeIndex = ref(0);  // 0から47
 
 const flowData = ref(null);
@@ -116,6 +116,9 @@ function getCapacity(lineName) {
 }
 
 function getFlow(lineName) {
+  if (!flowData.value) {  // 潮流データが無い場合 0 を返す
+    return 0;
+  }
   // 潮流データから、送電線名が一致するものを抜き出す
   const flow = flowData.value.find((element) => (element.name == lineName));
   if (flow == undefined) {  // そのような送電線名が無い場合 0 を返す
@@ -132,7 +135,6 @@ function getFlow(lineName) {
 function fetchFlowData() {
   fetch(`/api/flow/${area.value}/${formatDate(date.value)}`)
     .then((response) => {
-      console.log(response)
       if (!response.ok) {  // 指定日のデータが無いとき404
         flowData.value = null;
       }
@@ -140,11 +142,12 @@ function fetchFlowData() {
     })
     .then((data) => {
       flowData.value = data;
+      console.log(data);
     });
 }
 
 function animate() {
-  animationTimeStep.value += 25;
+  animationTimeStep.value += 12.5;
   if (animationTimeStep.value > 100) {
     animationTimeStep.value -= 100;
   }
@@ -152,20 +155,20 @@ function animate() {
 
 fetchFlowData();
 
-setInterval(animate, 100);
+setInterval(animate, 50);
 
 </script>
 
 <template>
   <div class="title-bar">
-    <h1>電気の流れを見てみよう！</h1>
+    <h1>電力の流れを見てみよう！</h1>
     <h2>地内基幹送電線現在潮流可視化サイト beta</h2>
   </div>
 
   <div class="container" ref="containerDiv">
 
     <div class="text-box-introduction">
-      <p>主要な送電線の、30分ごとの電気の流れを分かりやすく表示しています。表示しているデータは、電力広域的運営推進機関(OCCTO)が公開している「地内基幹送電線潮流実績」をもとにしています。</p>
+      <p>主要な送電線の、30分ごとの電力潮流（電力の流れ）を表示しています。データとして、電力広域的運営推進機関(OCCTO)が公開している「地内基幹送電線潮流実績」を用いています。</p>
     </div>
 
     <div class="text-box-warning">
@@ -228,11 +231,7 @@ setInterval(animate, 100);
       </div>
     </div>
 
-    <!-- 潮流情報が取得できないとき -->
-    <div v-if="!flowData">データ読み込み中...</div>
-
-    <!-- 潮流情報が取得出来ていれば描画する -->
-    <div v-if="flowData" class="svg-wrapper">
+    <div class="svg-wrapper">
 
       <svg viewBox="0 0 1200 1500" xmlns="http://www.w3.org/2000/svg" version="1.1">
 
@@ -243,10 +242,20 @@ setInterval(animate, 100);
           fill="rgb(255,245,219)">
         </rect>
 
+        <!-- デバッグ用 50px ごとのグリッド線 -->
+        <line v-for="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]"  
+          :key="i" :x1="0" :y1="i * 50" :x2="1200" :y2="i * 50" fill="none" stroke="#888"
+        />
+        <line
+          v-for="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]"  
+          :key="i" :x1="i * 50" :y1="0" :x2="i * 50" :y2="1200" fill="none" stroke="#888"
+        />
+
         <Line
           v-for="item in lines"
           :key="item.name"
           :name="item.name"
+          :voltage="item.voltage"
           :capacity="getCapacity(item.name)"
           :flow="getFlow(item.name)"
           :points="item.points"
@@ -258,6 +267,8 @@ setInterval(animate, 100);
           :key="item.name"
           :name="item.name"
           :point="item.point"
+          :label-position="item.labelPosition"
+          :label-size="20"
         />
       </svg>
     </div>

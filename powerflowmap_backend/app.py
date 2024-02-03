@@ -1,18 +1,18 @@
 from __future__ import annotations
 
-import time
+import os
 
+import dotenv
 import pandas as pd
 from flask import Flask
 from flask_restful import Api, Resource, abort
 
 from interpolate_flow_tokyo import interpolate_flow_tokyo
 
-# 送電線情報を含むファイルへのパス
-LINE_FILE_PATH = "data/soudensen.csv"
+dotenv.load_dotenv()
 
 # 潮流実績を入れるフォルダへのパス
-FLOW_FOLDER_PATH = "data/jisseki"
+FLOW_FOLDER_PATH = os.getenv("FLOW_FOLDER_PATH")
 
 
 class Flow(Resource):
@@ -28,25 +28,20 @@ class Flow(Resource):
         指定した日付,エリアの1日分の潮流データを取得するAPI
 
         --------
-        usage: `/flow?year=2022&month=6&day=2&area=tokyo`
+        usage: `/api/flow/tokyo/2022/6/2`
         `year`: 年
         `month`: 月
         `day`: 日
         `area`: エリア. 現時点では tokyo のみ受け付ける
         """
-        # date = (
-        #     int(request.args.get("year")) * 10000
-        #     + int(request.args.get("month")) * 100
-        #     + int(request.args.get("day"))
-        # )
-        # area = request.args.get("area")
+
         date = year * 10000 + month * 100 + day
         print(area, year, month, day)
 
         # 指定日のデータがキャッシュにない場合は読み込み
         if self.data_cache.get(date) is None:
             try:
-                file_name = f"{FLOW_FOLDER_PATH}/jisseki_{area}_{date:08}.csv"
+                file_name = f"{FLOW_FOLDER_PATH}/{area}/jisseki_{area}_{date:08}.csv"
                 self.data_cache[date] = pd.read_csv(file_name)
             except FileNotFoundError:
                 abort(404)

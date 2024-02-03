@@ -13,7 +13,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows = []
 
     # まずは値をそのまま転記できるものを埋める
-
+    # 500kV
     flows.append({"name": "川内線", "amounts": get_line_value(df_occto, "川内線")})
     flows.append({"name": "南いわき幹線", "amounts": get_line_value(df_occto, "南いわき幹線")})
     flows.append({"name": "新いわき線", "amounts": get_line_value(df_occto, "新いわき線")})
@@ -40,6 +40,14 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append({"name": "新多摩線", "amounts": get_line_value(df_occto, "新多摩線")})
     flows.append({"name": "新秩父線", "amounts": get_line_value(df_occto, "新秩父線")})
     flows.append({"name": "新豊洲線", "amounts": get_line_value(df_occto, "新豊洲線")})
+    # 275kV
+    flows.append({"name": "君津線", "amounts": get_line_value(df_occto, "君津線")})
+    flows.append({"name": "香取線", "amounts": get_line_value(df_occto, "香取線")})
+    flows.append(
+        {"name": "佐久間東幹線(中)", "amounts": get_line_value(df_occto, "佐久間東幹線(中)")}
+    )
+    flows.append({"name": "鹿島線", "amounts": get_line_value(df_occto, "鹿島線")})
+    flows.append({"name": "那珂線", "amounts": get_line_value(df_occto, "那珂線")})
 
     # 計算が必要な送電線について追記
 
@@ -71,6 +79,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
         }
     )
     # 新飯能変電所の出入りから、新所沢線Bが求まる
+    flows.append({"name": "新飯能線", "amounts": get_line_value(df_occto, "青梅線")})
     flows.append({"name": "新所沢線A", "amounts": get_line_value(df_occto, "新所沢線")})
     flows.append(
         {
@@ -99,7 +108,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append(
         {
             "name": "奥只見線",
-            "amount": (
+            "amounts": (
                 np.array(get_line_value(df_occto, "東群馬幹線"))
                 + np.array(get_line_value(df_occto, "新赤城線"))
                 - np.array(get_line_value(df_occto, "南いわき幹線"))
@@ -110,7 +119,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append(
         {
             "name": "南新潟幹線・新新潟幹線",
-            "amount": (
+            "amounts": (
                 np.array(get_line_value(df_occto, "西群馬幹線"))
                 + np.array(get_line_value(df_occto, "西上武幹線"))
                 - np.array(get_line_value(df_occto, "新吾妻線"))
@@ -122,7 +131,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append(
         {
             "name": "玉原線・中東京幹線",
-            "amoutns": (
+            "amounts": (
                 np.array(get_line_value(df_occto, "新榛名線"))
                 + np.array(get_line_value(df_occto, "新吾妻線"))
             ).tolist(),
@@ -132,7 +141,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append(
         {
             "name": "下郷線・塩原線",
-            "amount": (
+            "amounts": (
                 np.array(get_line_value(df_occto, "中栃木線"))
                 - np.array(get_line_value(df_occto, "新いわき線"))
             ).tolist(),
@@ -144,7 +153,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append(
         {
             "name": "福島幹線(山)・福島東幹線(山)・広野火力線",
-            "amount": (
+            "amounts": (
                 np.array(get_line_value(df_occto, "新いわき線"))
                 + np.array(get_line_value(df_occto, "福島幹線(中)"))
                 + np.array(get_line_value(df_occto, "福島東幹線(里)"))
@@ -156,7 +165,7 @@ def interpolate_flow_tokyo(df_occto: pd.DataFrame) -> list[dict]:
     flows.append(
         {
             "name": "相馬双葉幹線",
-            "amount": (
+            "amounts": (
                 np.array(get_line_value(df_occto, "川内線"))
                 + np.array(get_line_value(df_occto, "南いわき幹線"))
             ).tolist(),

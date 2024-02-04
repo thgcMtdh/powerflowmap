@@ -156,12 +156,12 @@ function getFlow(lineName) {
 }
 
 function fetchFlowData() {
-  // example URI: /data/tokyo/jisseki_tokyo_20230401.csv
+  // example URI: ./data/tokyo/jisseki_tokyo_20230401.csv
   const day = date.value.getDate();
   const month = date.value.getMonth() + 1;
   const year = date.value.getFullYear();
   const datestr = Number(year * 10000 + month * 100 + day);
-  fetch(`/data/${area.value}/jisseki_${area.value}_${datestr}.csv`)
+  fetch(`./data/${area.value}/jisseki_${area.value}_${datestr}.csv`)
     .then((response) => {
       if (!response.ok) {  // 指定日のデータが無いとき404
         return null;

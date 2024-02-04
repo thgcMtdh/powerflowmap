@@ -1,6 +1,8 @@
 <script setup>
 import { ref, watch } from "vue";
+import Slider from '@vueform/slider';
 import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vueform/slider/themes/default.css';
 import '@vuepic/vue-datepicker/dist/main.css'
 import Legend from './components/Legend.vue';
 import Line from "./components/Line.vue";
@@ -71,9 +73,10 @@ const timeOptions = [
 const area = ref("tokyo");
 const date = ref(new Date(2023, 4 - 1, 1));
 const timeIndex = ref(0);  // 0から47
+const timeAnimIntervId = ref(null);  // 時刻を進めるアニメーションのInterval ID
 
 const flowData = ref(null);
-const animationTimeStep = ref(0);  // 0～100の数値。破線の進行を指定する
+const animationTimeStep = ref(0);  // 0～100の数値。潮流を表す破線の進行を指定する
 
 watch(date, (newDate) => {
   fetchFlowData();
@@ -86,22 +89,8 @@ function formatDate(date) {
   return `${year}/${month}/${day}`;
 }
 
-function increaseTime() {
-  if (timeIndex.value == 47) {
-    timeIndex.value = 0;
-    date.value = new Date(date.value.setDate(date.value.getDate() + 1));
-  } else {
-    timeIndex.value++;
-  }
-}
-
-function decreaseTime() {
-  if (timeIndex.value == 0) {
-    timeIndex.value = 47
-    date.value = new Date(date.value.setDate(date.value.getDate() - 1))
-  } else {
-    timeIndex.value--
-  }
+function formatTime(timeindex) {
+  return timeOptions[Math.round(timeindex)];
 }
 
 function increaseDate() {
@@ -109,7 +98,44 @@ function increaseDate() {
 }
 
 function decreaseDate() {
-  date.value = new Date(date.value.setDate(date.value.getDate() - 1))
+  date.value = new Date(date.value.setDate(date.value.getDate() - 1));
+}
+
+function increaseTime() {
+  if (timeIndex.value >= 47) {
+    timeIndex.value = 0;
+    increaseDate();
+  } else {
+    timeIndex.value++;
+  }
+}
+
+function decreaseTime() {
+  if (timeIndex.value <= 0) {
+    timeIndex.value = 47;
+    decreaseDate();
+  } else {
+    timeIndex.value--;
+  }
+}
+
+// 時刻を進めるアニメーション
+
+function startStopButton() {
+  if (!timeAnimIntervId.value) {  // 開始
+    timeAnimIntervId.value = setInterval(timeAnimate, 500);
+  } else {  // 終了
+    clearInterval(timeAnimIntervId.value);
+    timeAnimIntervId.value = null;
+  }
+}
+
+function timeAnimate() {
+  if (timeIndex.value >= 47) {
+    timeIndex.value = 0;
+  } else {
+    timeIndex.value++;
+  }
 }
 
 function getFlow(lineName) {
@@ -122,7 +148,7 @@ function getFlow(lineName) {
     return 0;
   }
   // timeIndex で指定された時刻の潮流値を返す
-  const amount = flow.amounts[timeIndex.value];
+  const amount = flow.amounts[Math.round(timeIndex.value)];
   if (amount == undefined) {  // 指定された時刻のデータが無い場合 0 を返す
     return 0
   }
@@ -203,14 +229,14 @@ setInterval(animate, 50);
 
       <div class="form-item">
         <div class="form-item-label">日付</div>
-        <VueDatePicker
-          v-model="date"
-          :format="formatDate"
-          :enable-time-picker="false"
-          locale="ja-JP"
-          year-first
-        />
-        <div class="button-align-area">
+        <div class="form-item-wrapper">
+          <VueDatePicker
+            v-model="date"
+            :format="formatDate"
+            :enable-time-picker="false"
+            locale="ja-JP"
+            year-first
+          />
           <button @click="decreaseDate" class="button-basic"> 前日 </button>
           <button @click="increaseDate" class="button-basic"> 翌日 </button>
         </div>
@@ -218,16 +244,20 @@ setInterval(animate, 50);
 
       <div class="form-item">
         <div class="form-item-label">時刻</div>
-        <select v-model="timeIndex" class="dp__theme_light dp__input">
-          <option v-for="(item, index) in timeOptions"
-            :value="index"
-            :key="index">
-            {{ item }}
-          </option>
-        </select>
-        <div class="button-align-area">
-          <button @click="decreaseTime" class="button-basic"> 30分前 </button>
-          <button @click="increaseTime" class="button-basic"> 30分後 </button>
+        <div class="form-item-wrapper">
+          <div class="slider-area">
+            <Slider
+              v-model="timeIndex"
+              :min="0"
+              :max="47"
+              :lazy="false"
+              :format="formatTime"
+              class="slider-orange"
+            />
+          </div>
+          <button @click="startStopButton" class="button-basic button-small">{{ timeAnimIntervId == null ? "▶" : "■" }}</button>
+          <button @click="decreaseTime" class="button-basic">30分前</button>
+          <button @click="increaseTime" class="button-basic">30分後</button>
         </div>
       </div>
     </div>

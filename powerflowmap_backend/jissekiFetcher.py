@@ -32,9 +32,15 @@ AREANAME_DICT = {
 
 def main() -> None:
     area = "tokyo"
-    the_date = datetime.date(2023, 10, 24)
-    while the_date <= datetime.date(2023, 10, 25):  # datetime.date.today():
-        fetch_csv(the_date, area)
+    the_date = datetime.date(2023, 12, 23)
+    while the_date <= datetime.date.today():
+        try:
+            fetch_csv(the_date, area)
+        except UnicodeDecodeError as e:
+            print(e)
+            print("Try again...")
+
+        print(the_date, "end")
         the_date = the_date + datetime.timedelta(days=1)
 
 
@@ -143,13 +149,16 @@ def fetch_csv(date: datetime.date, area: str) -> None:
         # 「CSV保存」ボタンをクリック
         csv_btn = driver.find_element(By.ID, "csvBtn")
         csv_btn.click()
+        
+        # 「OK」が押せるようになるまで待機
+        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div[3]/div/button[1]")))
 
         # ダイアログで「OK」を押下。これで保存される
         ok_btn = driver.find_element(By.XPATH, "/html/body/div[3]/div[3]/div/button[1]")
         ok_btn.click()
 
         # ダウンロードが終わるまで待機
-        time.sleep(1)
+        time.sleep(5)
         while [x for x in os.listdir(save_dir) if x.endswith(("crdownload", "tmp"))]:
             time.sleep(1)
 

@@ -81,9 +81,8 @@ export function calcFlowDataTokyo(csv) {
         )
     });
 
-    // 西群馬幹線は、途中に揚水や需要があって正確な値を計算できないので、そのまま返す
+    // 西群馬幹線は、途中に揚水や需要があって東山梨以南の正確な値を計算できないので、そのまま返す
     flows.push({'name': '西群馬幹線A', 'amounts': rawdata['西群馬幹線']});
-    flows.push({'name': '西群馬幹線B', 'amounts': rawdata['西群馬幹線']});
 
     // 新秩父開閉所の出入りから、安曇幹線が求まる
     flows.push({

@@ -71,16 +71,22 @@ const timeOptions = [
 ]
 
 const area = ref("tokyo");
-const date = ref(new Date(2023, 4 - 1, 1));
+const date = ref(new Date());
 const timeIndex = ref(0);  // 0から47
 const timeAnimIntervId = ref(null);  // 時刻を進めるアニメーションのInterval ID
 
 const flowData = ref(null);
 const animationTimeStep = ref(0);  // 0～100の数値。潮流を表す破線の進行を指定する
 
-watch(date, (newDate) => {
-  fetchFlowData();
-})
+function setCurrentDateAndTime() {
+  const now = new Date();
+  // dateを現在時刻の30分前に設定
+  date.value = new Date(date.value.setMinutes(now.getMinutes() - 30));
+  // timeIndexを現在のコマ(0-47)に設定
+  const hours = date.value.getHours();
+  const minutes = date.value.getMinutes();
+  timeIndex.value = 2 * hours + Math.floor(minutes / 30);
+}
 
 function formatDate(date) {
   const day = date.getDate();
@@ -180,8 +186,11 @@ function animate() {
   }
 }
 
-fetchFlowData();
+watch(date, (newDate) => {
+  fetchFlowData();
+});
 
+setCurrentDateAndTime();
 setInterval(animate, 50);
 
 </script>

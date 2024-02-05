@@ -27,13 +27,20 @@ const strokeWidth = computed(() => {
   return (props.capacity / 1000) * WIDTH_PER_GW;
 })
 
-function calcDasharray() {
-  // 送電線の利用率を算出。0.9を超える場合は0.9とする
-  var usedRate = Math.abs(props.flow / props.capacity);
-  usedRate = Math.min(usedRate, 0.9);
+const usedRate = computed(() => {
+  return Math.abs(props.flow / props.capacity);  // 送電線の使用率を算出
+})
 
-  // 利用率を破線の密度で表現する
-  return `${DASH_LEN * usedRate},${DASH_LEN * (1 - usedRate)}`;
+function calcDasharray() {
+  // 使用率を破線の密度で表現する
+  // 1を超える場合は破線の密度を減らし、背景の赤色が見えるようにする
+  if (usedRate.value < 1) {
+    return `${DASH_LEN * usedRate.value},${DASH_LEN * (1 - usedRate.value)}`;
+  }
+  if (usedRate.value < 2) {
+    return `${DASH_LEN * (2 - usedRate.value)},${DASH_LEN * (usedRate.value - 1)}`;
+  }
+  return '0,1';
 }
 
 function calcDashoffset() {
@@ -60,7 +67,7 @@ function calcDashoffset() {
   <!-- 塗りつぶしの白い部分 -->
   <polyline
     fill="none"
-    stroke="rgb(255,255,255)"
+    :stroke="(usedRate < 1) ? 'rgb(255,255,255)' : 'rgb(200,0,0)'"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="strokeWidth"
   />

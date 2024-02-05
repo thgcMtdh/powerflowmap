@@ -66,8 +66,8 @@ export function calcFlowDataTokyo(csv) {
     flows.push({
         'name': '新古河線B',
         'amounts': arraySum(
-            [rawdata['新古河線'], rawdata['西上武幹線'], rawdata['新所沢線'], rawdata['中沢線'], rawdata['南狭山線']],
-            [1, 1, -1, -1, -1]
+            [rawdata['新所沢線'], rawdata['中沢線'], rawdata['南狭山線'], rawdata['西上武幹線']],
+            [1, 1, 1, -1]
         )
     });
 

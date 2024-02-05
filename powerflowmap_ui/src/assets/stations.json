@@ -74,7 +74,7 @@
         "name": "新岡部",
         "point": { "x": 350, "y": 550 },
         "size": 40,
-        "labelPosition": { "x": -100, "y": 0 }
+        "labelPosition": { "x": -80, "y": -40 }
     },
     {
         "name": "新榛名",
@@ -138,9 +138,9 @@
     },
     {
         "name": "新坂戸",
-        "point": { "x": 500, "y": 700 },
+        "point": { "x": 500, "y": 650 },
         "size": 40,
-        "labelPosition": { "x": 30, "y": 0 }
+        "labelPosition": { "x": -90, "y": -40 }
     },
     {
         "name": "新所沢",

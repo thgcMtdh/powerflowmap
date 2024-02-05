@@ -23,7 +23,7 @@ export function convertCsvToDict(csv) {
 
         // 数値を転記
         for (let j = 0; j < 48; j++) {
-            result[name][j] = parseInt(currentLine[j + 5].trim());
+            result[name][j] = parseInt(currentLine[j + 5].trim()) || 0;  // NaNのとき0を返す
         }
     }
     return result;

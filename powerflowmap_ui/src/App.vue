@@ -217,6 +217,8 @@ setInterval(animate, 50);
             v-model="date"
             :format="formatDate"
             :enable-time-picker="false"
+            :min-date="new Date(2023, 1, 1)"
+            :max-date="new Date()"
             locale="ja-JP"
             year-first
           />

@@ -13,9 +13,34 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@thgc_Mtd_h" />
     <title>基幹送電線潮流実績可視化サイト～電力の流れを見てみよう～</title>
+    <link rel="stylesheet" type="text/css" href="./src/assets/main.css" />
+    <script type="module" src="./src/main.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <div class="title-bar">
+      <h1>基幹送電線潮流実績可視化サイト(仮)</h1>
+      <h2>～電力の流れを見てみよう～</h2>
+    </div>
+    <div class="container">
+      <div class="text-box-introduction">
+        <p>主要な送電線の30分ごとの電力潮流(電力の流れ)を可視化するサイトです。</p>
+      </div>
+      <div class="text-box-warning">
+        <p>【免責事項】本サイトは<a href="https://www.occto.or.jp/keitoujouhou/index.html">電力広域的運営推進機関(OCCTO)が公開するデータ</a>を基に作成されていますが、<span style="font-weight: bold;">データの正確性については保証いたしません。</span>本サイトの情報について関係する事業者に問い合わせを行うことはご遠慮ください。</p>
+      </div>
+
+      <div id="app"></div>
+  
+      <div class="text-box-attention">
+        <h3>見方</h3>
+        <ul>
+          <li>送電線の幅は運用容量（平常時に送電線に流せる最大の電力）に対応しています</li>
+          <li>オレンジ色の模様が流れる向きに電力が流れています。模様の中でオレンジ色が占める割合は送電線の使用率（運用容量に占める現在の送電電力の割合）を表しており、オレンジが多いほど送電電力が大きいことを示します</li>
+          <li>灰色の送電線は潮流実績が公開されていない送電線です（電力が流れていないわけではありません）</li>
+          <li>ここに表示されていない送電線も多数ありますが、現在データ反映作業中です</li>
+        </ul>
+      </div>
+      <p><span style="font-size: 0.8em;">Source code can be found on <a href="https://github.com/thgcMtdh/powerflowmap">GitHub</a>.</span></p>
+    </div>
   </body>
 </html>

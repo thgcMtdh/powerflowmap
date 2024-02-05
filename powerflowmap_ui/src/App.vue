@@ -187,33 +187,8 @@ setInterval(animate, 50);
 </script>
 
 <template>
-  <div class="title-bar">
-    <h1>基幹送電線潮流実績可視化サイト(仮)</h1>
-    <h2>～電力の流れを見てみよう～</h2>
-  </div>
 
   <div class="container" ref="containerDiv">
-
-    <div class="text-box-introduction">
-      <p>電力広域的運営推進機関(OCCTO)が公開している、主要な送電線の30分ごとの電力潮流(電力の流れ)を可視化するサイトです。</p>
-    </div>
-
-    <div class="text-box-warning">
-      <h3>免責事項</h3>
-      <ul>
-        <li><span style="font-weight: bold;">本サイトは管理人の趣味で制作されており、データの正確性については保証いたしません。</span>あくまでもイメージとしてお考え下さい。本サイトの情報について関係する事業者に問い合わせを行うことはご遠慮ください。</li>
-      </ul>
-    </div>
-
-    <div class="text-box-attention">
-      <h3>見方</h3>
-      <ul>
-        <li>送電線の幅は運用容量（平常時に送電線に流せる最大の電力）に対応しています</li>
-        <li>オレンジ色の模様が流れる向きに電力が流れています。模様の中でオレンジ色が占める割合は送電線の使用率（運用容量に占める現在の送電電力の割合）を表しており、オレンジが多いほど送電電力が大きいことを示します</li>
-        <li>灰色の送電線は潮流実績が公開されていない送電線です（電力が流れていないわけではありません）</li>
-      </ul>
-    </div>
-
     <div class="form">
       <div class="form-item">
         <div class="form-item-label">エリア</div>
@@ -331,13 +306,5 @@ setInterval(animate, 50);
 
       </svg>
     </div>
-    <p>
-      備考
-      <ul>
-        <li>外輪系統の主要部のみを表示している。都市部の系統図は現在作成中</li>
-
-      </ul>
-    </p>
-    <p><span style="font-size: 0.8em;">Source code can be found on <a href="https://github.com/thgcMtdh/powerflowmap">GitHub</a>.</span></p>
   </div>
 </template>

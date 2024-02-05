@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733335"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="favicon.svg"
+   inkscape:export-filename="C:\Users\hibiki\マイドライブ\My_ドキュメント\その他書類・制作物\20240205_潮流マップ\favicon案2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.73406285"
+     inkscape:cx="153.93777"
+     inkscape:cy="279.94878"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2"
+     units="px"
+     showguides="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid832"
+       empspacing="8" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <rect
+       x="0"
+       y="0"
+       width="372.44575"
+       height="411.88345"
+       id="rect13807" />
+    <rect
+       x="24"
+       y="24"
+       width="216"
+       height="200"
+       id="rect3635" />
+  </defs>
+  <g
+     inkscape:label="Background"
+     inkscape:groupmode="layer"
+     id="layer1"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#d2691e;fill-opacity:1;stroke:none;stroke-width:0.846851"
+       id="rect967"
+       width="67.73333"
+       height="67.73333"
+       x="0"
+       y="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Figs">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-2.8097245,-13.413012)"
+       id="text13805"
+       style="font-style:normal;font-weight:normal;font-size:288px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect13807);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="0"
+         y="288.84375"
+         id="tspan23769"><tspan
+           style="font-family:'Meiryo UI';-inkscape-font-specification:'Meiryo UI';fill:#ffffff"
+           id="tspan23767">潮</tspan></tspan></text>
+  </g>
+</svg>

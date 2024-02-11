@@ -46,8 +46,21 @@ export function calcFlowDataTokyo(csv) {
     flows.push({'name': '君津線',           'amounts': rawdata['君津線']});
     flows.push({'name': '香取線',           'amounts': rawdata['香取線']});
     flows.push({'name': '佐久間東幹線(中)', 'amounts': rawdata['佐久間東幹線(中)']});
+    flows.push({'name': '佐久間東幹線(里)', 'amounts': rawdata['佐久間東幹線(里)']});
     flows.push({'name': '鹿島線',           'amounts': rawdata['鹿島線']});
     flows.push({'name': '那珂線',           'amounts': rawdata['那珂線']});
+    flows.push({'name': '東京東線',         'amounts': rawdata['東京東線']});
+    flows.push({'name': '東京北線',         'amounts': rawdata['東京北線']});
+    flows.push({'name': '北葛飾線',         'amounts': rawdata['北葛飾線']});
+    flows.push({'name': '河北線',           'amounts': rawdata['河北線']});
+    flows.push({'name': '東京西線A',        'amounts': rawdata['東京西線']});
+    flows.push({'name': '西南多摩線',       'amounts': rawdata['西南多摩線']});
+    flows.push({'name': '中沢線',           'amounts': rawdata['中沢線']});
+    flows.push({'name': '南狭山線',         'amounts': rawdata['南狭山線']});
+    flows.push({'name': '坂戸川越線',       'amounts': rawdata['坂戸川越線']});
+    flows.push({'name': '西南川越線A',      'amounts': rawdata['西南川越線']});
+    flows.push({'name': '東京中線A',        'amounts': rawdata['東京中線']});
+    flows.push({'name': '北与野線',         'amounts': rawdata['北与野線']});
     
     // 計算が必要な送電線について追記
 

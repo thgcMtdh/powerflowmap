@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import codecs
 import datetime
 import os
@@ -67,7 +65,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
     options.add_experimental_option("prefs", {"download.default_directory": save_dir})
 
     # ラズパイの場合の設定
-    if platform.system() == "Linux" and platform.machine() == "armv7l":
+    if platform.system() == "Linux" and platform.machine() == "aarch64":
         options.add_argument("--headless")  # 処理負荷削減のためヘッドレスモード
         options.add_argument("--no-sandbox")
         options.add_argument("--window-size=1280,720")

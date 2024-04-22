@@ -30,6 +30,7 @@ export function calcFlowDataTokyo(csv) {
     flows.push({'name': '印旛線',         'amounts': rawdata['印旛線']});
     flows.push({'name': '新佐原線',       'amounts': rawdata['新佐原線']});
     flows.push({'name': '新筑波線',       'amounts': rawdata['新筑波線']});
+    flows.push({'name': '新古河線',       'amounts': rawdata['新古河線']});
     flows.push({'name': '東群馬幹線',     'amounts': rawdata['東群馬幹線']});
     flows.push({'name': '新赤城線',       'amounts': rawdata['新赤城線']});
     flows.push({'name': '新新田線',       'amounts': rawdata['新新田線']});
@@ -53,14 +54,40 @@ export function calcFlowDataTokyo(csv) {
     flows.push({'name': '東京北線',         'amounts': rawdata['東京北線']});
     flows.push({'name': '北葛飾線',         'amounts': rawdata['北葛飾線']});
     flows.push({'name': '河北線',           'amounts': rawdata['河北線']});
+    flows.push({'name': '青梅線A',          'amounts': rawdata['青梅線']});
     flows.push({'name': '東京西線A',        'amounts': rawdata['東京西線']});
+    flows.push({'name': '港北線(港北～荏田)','amounts': rawdata['港北線']});
+    flows.push({'name': '西北線',           'amounts': rawdata['西北線']});
+    flows.push({'name': '東新宿線',         'amounts': rawdata['東新宿線']});
+    flows.push({'name': '新宿線',           'amounts': rawdata['新宿線']});
+    flows.push({'name': '新宿城南線',       'amounts': rawdata['新宿城南線']});
+    flows.push({'name': '秦浜線A',          'amounts': rawdata['秦浜線']});
+    flows.push({'name': '東京南線1/2L',     'amounts': rawdata['東京南線1/2L']});
+    flows.push({'name': '東京南線3/4LA',    'amounts': rawdata['東京南線3/4L']});
+    flows.push({'name': '南川崎線',         'amounts': rawdata['南川崎線']});
+    flows.push({'name': '京浜線1/2L',       'amounts': rawdata['京浜線1/2L']});
+    flows.push({'name': '京浜線3/4LA',      'amounts': rawdata['京浜線3/4L']});
     flows.push({'name': '西南多摩線',       'amounts': rawdata['西南多摩線']});
     flows.push({'name': '中沢線',           'amounts': rawdata['中沢線']});
     flows.push({'name': '南狭山線',         'amounts': rawdata['南狭山線']});
+    flows.push({'name': '新座線',           'amounts': rawdata['新座線']});
+    flows.push({'name': '北武蔵野線',       'amounts': rawdata['北武蔵野線']});
+    flows.push({'name': '水道橋線',         'amounts': rawdata['水道橋線']});
+    flows.push({'name': '東新宿水道橋線',   'amounts': rawdata['東新宿水道橋線']});
     flows.push({'name': '坂戸川越線',       'amounts': rawdata['坂戸川越線']});
     flows.push({'name': '西南川越線A',      'amounts': rawdata['西南川越線']});
     flows.push({'name': '東京中線A',        'amounts': rawdata['東京中線']});
     flows.push({'name': '北与野線',         'amounts': rawdata['北与野線']});
+    flows.push({'name': '西越谷線',         'amounts': rawdata['西越谷線']});
+    flows.push({'name': '春日部線',         'amounts': rawdata['春日部線']});
+    flows.push({'name': '豊島線',           'amounts': rawdata['豊島線']});
+    flows.push({'name': '東内幸町線',       'amounts': rawdata['東内幸町線']});
+    flows.push({'name': '上野線',           'amounts': rawdata['上野線']});
+    flows.push({'name': '上野水道橋線',     'amounts': rawdata['上野水道橋線']});
+    flows.push({'name': '世田谷線',         'amounts': rawdata['世田谷線']});
+    flows.push({'name': '豊洲内幸町線',     'amounts': rawdata['豊洲内幸町線']});
+    flows.push({'name': '北千葉線A',        'amounts': rawdata['北千葉線']});
+    flows.push({'name': '墨東線A',          'amounts': rawdata['墨東線']});
     
     // 計算が必要な送電線について追記
 
@@ -74,13 +101,12 @@ export function calcFlowDataTokyo(csv) {
         )
     });
 
-    // 新所沢変電所の出入りから、新古河線Bが求まる
-    flows.push({'name': '新古河線A', 'amounts': rawdata['新古河線']});
+    // 新所沢変電所の出入りから、新鶴ヶ島線が求まる
     flows.push({
-        'name': '新古河線B',
+        'name': '新鶴ヶ島線',
         'amounts': arraySum(
-            [rawdata['新所沢線'], rawdata['中沢線'], rawdata['南狭山線'], rawdata['西上武幹線']],
-            [1, 1, 1, -1]
+            [rawdata['新古河線'], rawdata['西上武幹線'], rawdata['新所沢線'], rawdata['中沢線'], rawdata['南狭山線']],
+            [1, 1, -1, -1, -1]
         )
     });
 

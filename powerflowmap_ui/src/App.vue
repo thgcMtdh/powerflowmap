@@ -151,8 +151,8 @@ function getFlow(lineName) {
   }
   // 潮流データから、送電線名が一致するものを抜き出す
   const flow = flowData.value.find((element) => (element.name == lineName));
-  if (flow == undefined) {  // そのような送電線名が無い場合 0 を返す
-    return 0;
+  if (flow == undefined || flow.amounts == undefined) {  // そのような送電線名が無い場合 0 を返す
+    return 0;  // TODO: undefined の明確化
   }
   // timeIndex で指定された時刻の潮流値を返す
   const amount = flow.amounts[Math.round(timeIndex.value)];
@@ -291,7 +291,7 @@ setInterval(animate, 50);
           :capacity="item.capacity"
           :flow="getFlow(item.name)"
           :points="item.points"
-          :animation-time-step="animationTimeStep"
+          :animation-time-step="0"
         />
 
         <StationNoFlow
@@ -314,7 +314,7 @@ setInterval(animate, 50);
         />
 
         <!-- 凡例 -->
-        <Legend />
+        <!-- <Legend /> -->
 
       </svg>
     </div>

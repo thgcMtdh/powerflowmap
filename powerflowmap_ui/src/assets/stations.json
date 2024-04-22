@@ -48,13 +48,13 @@
     },
     {
         "name": "新筑波",
-        "point": { "x": 800, "y": 550 },
+        "point": { "x": 800, "y": 600 },
         "size": 40,
         "labelPosition": { "x": 0, "y": 40 }
     },
     {
         "name": "新古河",
-        "point": { "x": 700, "y": 600 },
+        "point": { "x": 700, "y": 650 },
         "size": 40,
         "labelPosition": { "x": -80, "y": -40 }
     },
@@ -96,7 +96,7 @@
     },
     {
         "name": "新佐原",
-        "point": { "x": 1100, "y": 800 },
+        "point": { "x": 1100, "y": 850 },
         "size": 40,
         "labelPosition": { "x": -80, "y": 40 }
     },
@@ -108,7 +108,7 @@
     },
     {
         "name": "新野田",
-        "point": { "x": 800, "y": 700 },
+        "point": { "x": 800, "y": 750 },
         "size": 40,
         "labelPosition": { "x": 0, "y": -40 }
     },
@@ -132,25 +132,25 @@
     },
     {
         "name": "新多摩",
-        "point": { "x": 300, "y": 950 },
+        "point": { "x": 300, "y": 900 },
         "size": 40,
         "labelPosition": { "x": -90, "y": 0 }
     },
     {
         "name": "新坂戸",
-        "point": { "x": 450, "y": 700 },
+        "point": { "x": 500, "y": 650 },
         "size": 40,
         "labelPosition": { "x": -90, "y": -40 }
     },
     {
         "name": "新所沢",
-        "point": { "x": 350, "y": 750 },
+        "point": { "x": 400, "y": 700 },
         "size": 40,
         "labelPosition": { "x": -100, "y": 0 }
     },
     {
         "name": "新飯能",
-        "point": { "x": 300, "y": 850 },
+        "point": { "x": 350, "y": 750 },
         "size": 40,
         "labelPosition": { "x": -100, "y": 0 }
     },
@@ -162,7 +162,7 @@
     },
     {
         "name": "鹿島",
-        "point": { "x": 1150, "y": 750 },
+        "point": { "x": 1150, "y": 800 },
         "size": 30,
         "labelPosition": { "x": -70, "y": -10 }
     },
@@ -174,68 +174,8 @@
     },
     {
         "name": "北相模",
-        "point": { "x": 350, "y": 1050 },
+        "point": { "x": 400, "y": 1050 },
         "size": 30,
         "labelPosition": { "x": -70, "y": -40 }
-    },
-    {
-        "name": "北葛飾",
-        "point": { "x": 750, "y": 750 },
-        "size": 30,
-        "labelPosition": { "x": -70, "y": -30 }
-    },
-    {
-        "name": "北東京",
-        "point": { "x": 650, "y": 700 },
-        "size": 30,
-        "labelPosition": { "x": -70, "y": -30 }
-    },
-    {
-        "name": "中東京",
-        "point": { "x": 350, "y": 800 },
-        "size": 30,
-        "labelPosition": { "x": -100, "y": 0 }
-    },
-    {
-        "name": "南狭山",
-        "point": { "x": 450, "y": 850 },
-        "size": 30,
-        "labelPosition": { "x": -100, "y": 0 }
-    },
-    {
-        "name": "南川越",
-        "point": { "x": 450, "y": 775 },
-        "size": 30,
-        "labelPosition": { "x": -70, "y": -30 }
-    },
-    {
-        "name": "多摩",
-        "point": { "x": 400, "y": 900 },
-        "size": 30,
-        "labelPosition": { "x": -70, "y": -30 }
-    },
-    {
-        "name": "南多摩",
-        "point": { "x": 350, "y": 950 },
-        "size": 30,
-        "labelPosition": { "x": -70, "y": -30 }
-    },
-    {
-        "name": "西東京",
-        "point": { "x": 400, "y": 1000 },
-        "size": 30,
-        "labelPosition": { "x": -70, "y": 0 }
-    },
-    {
-        "name": "上尾",
-        "point": { "x": 550, "y": 700 },
-        "size": 30,
-        "labelPosition": { "x": -50, "y": -30 }
-    },
-    {
-        "name": "北与野",
-        "point": { "x": 550, "y": 750 },
-        "size": 30,
-        "labelPosition": { "x": -70, "y": -30 }
     }
 ]

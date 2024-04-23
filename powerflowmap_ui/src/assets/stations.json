@@ -35,6 +35,12 @@
         "labelPosition": { "x": -80, "y": 40 }
     },
     {
+        "name": "新福島",
+        "point": { "x": 1150, "y": 50 },
+        "size": 40,
+        "labelPosition": { "x": 0, "y": 0 }
+    },
+    {
         "name": "新茂木",
         "point": { "x": 850, "y": 400 },
         "size": 40,
@@ -161,16 +167,52 @@
         "labelPosition": { "x": 20, "y": 30 }
     },
     {
+        "name": "千葉中央",
+        "point": { "x": 900, "y": 1050 },
+        "size": 30,
+        "labelPosition": { "x": 30, "y": 0 }
+    },
+    {
+        "name": "花見川",
+        "point": { "x": 950, "y": 975 },
+        "size": 30,
+        "labelPosition": { "x": 30, "y": 0 }
+    },
+    {
+        "name": "北総",
+        "point": { "x": 1050, "y": 1000 },
+        "size": 30,
+        "labelPosition": { "x": 30, "y": 0 }
+    },
+    {
         "name": "鹿島",
         "point": { "x": 1150, "y": 800 },
         "size": 30,
         "labelPosition": { "x": -70, "y": -10 }
     },
     {
+        "name": "筑波南",
+        "point": { "x": 1100, "y": 750 },
+        "size": 30,
+        "labelPosition": { "x": 0, "y": 0 }
+    },
+    {
+        "name": "常総",
+        "point": { "x": 975, "y": 750},
+        "size": 30,
+        "labelPosition": { "x": 0, "y": 0 }
+    },
+    {
         "name": "那珂",
         "point": { "x": 1050, "y": 400 },
         "size": 30,
         "labelPosition": { "x": -20, "y": 40 }
+    },
+    {
+        "name": "信濃川",
+        "point": { "x": 75, "y": 225 },
+        "size": 30,
+        "labelPosition": { "x": 0, "y": 0 }
     },
     {
         "name": "北相模",
@@ -192,9 +234,15 @@
     },
     {
         "name": "青梅",
-        "point": { "x": 325, "y": 850 },
+        "point": { "x": 325, "y": 875 },
         "size": 30,
         "labelPosition": { "x": -70, "y": -30 }
+    },
+    {
+        "name": "豊岡",
+        "point": { "x": 375, "y": 850},
+        "size": 30,
+        "labelPosition": { "x": 0, "y": 0 }
     },
     {
         "name": "京浜",

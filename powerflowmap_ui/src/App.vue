@@ -8,7 +8,6 @@ import Legend from './components/Legend.vue';
 import Line from "./components/Line.vue";
 import LineNoFlow from "./components/LineNoFlow.vue";
 import Station from "./components/Station.vue";
-import StationNoFlow from "./components/StationNoFlow.vue";
 import lines from "./assets/lines.json";
 import linesNoFlow from "./assets/linesNoFlow.json";
 import stations from "./assets/stations.json";
@@ -292,14 +291,6 @@ setInterval(animate, 50);
           :flow="getFlow(item.name)"
           :points="item.points"
           :animation-time-step="0"
-        />
-
-        <StationNoFlow
-          v-for="item in stationsNoFlow"
-          :key="item.name"
-          :name="item.name"
-          :point="item.point"
-          :size="item.size"
         />
 
         <Station

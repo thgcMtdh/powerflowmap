@@ -12,10 +12,10 @@ const props = defineProps({
 });
 
 const strokeEdgeWidth = computed(() => {
-  if (props.voltage == 1000) return 12;
-  if (props.voltage == 500) return 8;
-  if (props.voltage == 275) return 5;
-  return 8;
+  if (props.voltage == 1000) return 6;
+  if (props.voltage == 500) return 6;
+  if (props.voltage == 275) return 3;
+  return 6;
 })
 
 const strokeWidth = computed(() => {
@@ -27,7 +27,7 @@ const strokeWidth = computed(() => {
   <!-- 外枠のグレーの部分 -->
   <polyline
     fill="none"
-    stroke="rgb(255,245,219)"
+    stroke="rgb(150,150,150)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="strokeWidth + strokeEdgeWidth"
   />
@@ -35,7 +35,7 @@ const strokeWidth = computed(() => {
   <!-- 塗りつぶしの白い部分 -->
   <polyline
     fill="none"
-    stroke="rgb(220,220,220)"
+    stroke="rgb(200,200,2200)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="strokeWidth"
   />

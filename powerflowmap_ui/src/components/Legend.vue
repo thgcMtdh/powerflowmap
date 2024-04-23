@@ -2,7 +2,6 @@
 import Line from "./Line.vue";
 import LineNoFlow from "./LineNoFlow.vue";
 import Station from "./Station.vue";
-import StationNoFlow from "./StationNoFlow.vue";
 
 const station = {
     "name": "変電所",

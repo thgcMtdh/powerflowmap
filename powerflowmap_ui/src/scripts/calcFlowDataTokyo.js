@@ -150,9 +150,9 @@ export function calcFlowDataTokyo(csv) {
         )
     });
 
-    // 新今市開閉所の出入りから、下郷線が求まる
+    // 新今市開閉所の出入りから、下郷線;塩原線の和が求まる
     flows.push({
-        'name': "下郷線",
+        'name': "下郷線＋塩原線",
         "amounts": arraySum(
             [rawdata['中栃木線'], rawdata['新いわき線']],
             [1, -1]

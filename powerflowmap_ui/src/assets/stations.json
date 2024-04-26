@@ -353,6 +353,12 @@
         "labelPosition": { "x": -60, "y": 30 }
     },
     {
+        "name": "南横須賀",
+        "point": { "x": 575, "y": 1325 },
+        "size": 30,
+        "labelPosition": { "x": -60, "y": 30 }
+    },
+    {
         "name": "西越谷",
         "point": { "x": 700, "y": 750 },
         "size": 30,

@@ -149,14 +149,14 @@ function getFlow(lineName) {
     return 0;
   }
   // 潮流データから、送電線名が一致するものを抜き出す
-  const flow = flowData.value.find((element) => (element.name == lineName));
-  if (flow == undefined || flow.amounts == undefined) {  // そのような送電線名が無い場合 0 を返す
-    return 0;  // TODO: undefined の明確化
+  const amounts = flowData.value[lineName];
+  if (amounts == undefined) {  // そのような送電線名が無い場合
+    return 0;
   }
   // timeIndex で指定された時刻の潮流値を返す
-  const amount = flow.amounts[Math.round(timeIndex.value)];
-  if (amount == undefined) {  // 指定された時刻のデータが無い場合 0 を返す
-    return 0
+  const amount = amounts[Math.round(timeIndex.value)];
+  if (amount == undefined) {  // 指定された時刻のデータがない場合
+    return 0;
   }
   return amount;
 }

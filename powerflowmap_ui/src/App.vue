@@ -290,7 +290,7 @@ setInterval(animate, 50);
           :capacity="item.capacity"
           :flow="getFlow(item.name)"
           :points="item.points"
-          :animation-time-step="0"
+          :animation-time-step="animationTimeStep"
         />
 
         <Station

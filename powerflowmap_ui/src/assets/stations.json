@@ -170,13 +170,13 @@
         "name": "千葉中央",
         "point": { "x": 900, "y": 1075 },
         "size": 25,
-        "labelPosition": { "x": 20, "y": 0 }
+        "labelPosition": { "x": -40, "y": 25 }
     },
     {
         "name": "花見川",
         "point": { "x": 950, "y": 975 },
         "size": 25,
-        "labelPosition": { "x": 20, "y": 0 }
+        "labelPosition": { "x": -80, "y": 0 }
     },
     {
         "name": "北総",

@@ -72,6 +72,7 @@ const area = ref("tokyo");
 const date = ref(new Date());
 const timeIndex = ref(0);  // 0から47
 const timeAnimIntervId = ref(null);  // 時刻を進めるアニメーションのInterval ID
+const isLoading = ref(false);  // データ取得中に true となるフラグ
 
 const flowData = ref(null);
 const animationTimeStep = ref(0);  // 0～100の数値。潮流を表す破線の進行を指定する
@@ -160,11 +161,12 @@ function getFlow(lineName) {
 }
 
 function fetchFlowData() {
-  // example URI: ./data/tokyo/jisseki_tokyo_20230401.csv
+  isLoading.value = true;
   const day = date.value.getDate();
   const month = date.value.getMonth() + 1;
   const year = date.value.getFullYear();
   const datestr = Number(year * 10000 + month * 100 + day);
+  // example URI: ./data/tokyo/jisseki_tokyo_20230401.csv
   fetch(`./data/${area.value}/jisseki_${area.value}_${datestr}.csv`)
     .then((response) => {
       if (!response.ok) {  // 指定日のデータが無いとき404
@@ -174,6 +176,7 @@ function fetchFlowData() {
     })
     .then((csv) => {
       flowData.value = calcFlowData(area.value, csv);
+      isLoading.value = false;
     });
 }
 
@@ -244,6 +247,8 @@ setInterval(animate, 50);
         </div>
       </div>
     </div>
+
+    <div v-bind:class="{ 'loading-bar-loading': isLoading, 'loading-bar': !isLoading }"></div>
 
     <div class="svg-wrapper">
 

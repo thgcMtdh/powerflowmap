@@ -247,7 +247,8 @@ setInterval(animate, 50);
         </div>
       </div>
     </div>
-
+    
+    <!-- プログレスバー -->
     <div v-bind:class="{ 'loading-bar-loading': isLoading, 'loading-bar': !isLoading }"></div>
 
     <div class="svg-wrapper">

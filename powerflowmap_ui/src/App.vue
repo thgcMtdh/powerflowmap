@@ -143,13 +143,13 @@ function timeAnimate() {
 }
 
 function getFlow(lineName) {
-  if (!flowData.value) {  // 潮流データが無い場合 0 を返す
-    return 0;
+  if (!flowData.value) {  // 潮流データが無い場合 undefined を返す
+    return undefined;
   }
   // 潮流データから、送電線名が一致するものを抜き出す
   const amounts = flowData.value[lineName];
-  if (amounts == undefined) {  // そのような送電線名が無い場合
-    return 0;
+  if (amounts == undefined) {  // 指定された送電線が存在しない場合 undefined を返す
+    return undefined;
   }
   // timeIndex で指定された時刻の潮流値を返す
   const amount = amounts[Math.round(timeIndex.value)];

@@ -72,6 +72,7 @@ const area = ref("tokyo");
 const date = ref(new Date());
 const timeIndex = ref(0);  // 0から47
 const timeAnimIntervId = ref(null);  // 時刻を進めるアニメーションのInterval ID
+const isLoading = ref(false);  // データ取得中に true となるフラグ
 
 const flowData = ref(null);
 const animationTimeStep = ref(0);  // 0～100の数値。潮流を表す破線の進行を指定する
@@ -143,13 +144,13 @@ function timeAnimate() {
 }
 
 function getFlow(lineName) {
-  if (!flowData.value) {  // 潮流データが無い場合 0 を返す
-    return 0;
+  if (!flowData.value) {  // 潮流データが無い場合 undefined を返す
+    return undefined;
   }
   // 潮流データから、送電線名が一致するものを抜き出す
   const amounts = flowData.value[lineName];
-  if (amounts == undefined) {  // そのような送電線名が無い場合
-    return 0;
+  if (amounts == undefined) {  // 指定された送電線が存在しない場合 undefined を返す
+    return undefined;
   }
   // timeIndex で指定された時刻の潮流値を返す
   const amount = amounts[Math.round(timeIndex.value)];
@@ -160,11 +161,12 @@ function getFlow(lineName) {
 }
 
 function fetchFlowData() {
-  // example URI: ./data/tokyo/jisseki_tokyo_20230401.csv
+  isLoading.value = true;
   const day = date.value.getDate();
   const month = date.value.getMonth() + 1;
   const year = date.value.getFullYear();
   const datestr = Number(year * 10000 + month * 100 + day);
+  // example URI: ./data/tokyo/jisseki_tokyo_20230401.csv
   fetch(`./data/${area.value}/jisseki_${area.value}_${datestr}.csv`)
     .then((response) => {
       if (!response.ok) {  // 指定日のデータが無いとき404
@@ -174,6 +176,7 @@ function fetchFlowData() {
     })
     .then((csv) => {
       flowData.value = calcFlowData(area.value, csv);
+      isLoading.value = false;
     });
 }
 
@@ -244,6 +247,9 @@ setInterval(animate, 50);
         </div>
       </div>
     </div>
+    
+    <!-- プログレスバー -->
+    <div v-bind:class="{ 'loading-bar-loading': isLoading, 'loading-bar': !isLoading }"></div>
 
     <div class="svg-wrapper">
 

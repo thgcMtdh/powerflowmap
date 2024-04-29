@@ -112,6 +112,39 @@ body {
         background-color: rgb(255, 244, 237);
     }
 }
+.loading-bar {
+    background: #fff; /* 大元のバックグラウンド背景色 */
+    height: 5px; /*ローディングバーの太さ*/
+    position: relative;
+}
+.loading-bar-loading {
+    background: #fff; /* 大元のバックグラウンド背景色 */
+    height: 5px; /*ローディングバーの太さ*/
+    position: relative;
+}
+.loading-bar-loading::before { 
+    -webkit-animation: left-to-right 1s infinite ease-out;
+    -moz-animation: left-to-right 1s infinite ease-out;
+    -o-animation: left-to-right 1s infinite ease-out;
+    -ms-animation: left-to-right 1s infinite ease-out;
+    animation: left-to-right 1s infinite ease-out;
+    background: rgb(150,150,150);
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+@keyframes left-to-right {
+    0% {
+        left: 0%;
+        width: 10%;
+    }
+    100% {
+        left: 90%;
+        width: 10%;
+    }
+}
 
 .svg-wrapper {
     width: 100%;

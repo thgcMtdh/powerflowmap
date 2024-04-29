@@ -66,14 +66,25 @@ function calcDashoffset() {
 
   <!-- 塗りつぶしの白い部分 -->
   <polyline
+    v-if="flow !== undefined"
     fill="none"
     :stroke="(usedRate < 1) ? 'rgb(255,255,255)' : 'rgb(200,0,0)'"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="strokeWidth"
   />
 
+  <!-- 潮流が undefined の場合はグレーで塗りつぶす -->
+  <polyline
+    v-if="flow === undefined"
+    fill="none"
+    stroke="rgb(200,200,200)"
+    :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
+    :stroke-width="strokeWidth"
+  />
+
   <!-- 上を動いているオレンジの潮流 -->
   <polyline
+    v-if="flow !== undefined"
     fill="none"
     stroke="rgb(248,100,0)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"

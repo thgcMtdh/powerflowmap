@@ -35,7 +35,7 @@ const strokeWidth = computed(() => {
   <!-- 塗りつぶしの白い部分 -->
   <polyline
     fill="none"
-    stroke="rgb(200,200,2200)"
+    stroke="rgb(200,200,200)"
     :points="points.map((p) => `${p.x},${p.y}`).join(' ')"
     :stroke-width="strokeWidth"
   />

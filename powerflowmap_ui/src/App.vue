@@ -8,7 +8,6 @@ import Legend from './components/Legend.vue';
 import Line from "./components/Line.vue";
 import LineNoFlow from "./components/LineNoFlow.vue";
 import Station from "./components/Station.vue";
-import StationNoFlow from "./components/StationNoFlow.vue";
 import lines from "./assets/lines.json";
 import linesNoFlow from "./assets/linesNoFlow.json";
 import stations from "./assets/stations.json";
@@ -149,14 +148,14 @@ function getFlow(lineName) {
     return 0;
   }
   // 潮流データから、送電線名が一致するものを抜き出す
-  const flow = flowData.value.find((element) => (element.name == lineName));
-  if (flow == undefined) {  // そのような送電線名が無い場合 0 を返す
+  const amounts = flowData.value[lineName];
+  if (amounts == undefined) {  // そのような送電線名が無い場合
     return 0;
   }
   // timeIndex で指定された時刻の潮流値を返す
-  const amount = flow.amounts[Math.round(timeIndex.value)];
-  if (amount == undefined) {  // 指定された時刻のデータが無い場合 0 を返す
-    return 0
+  const amount = amounts[Math.round(timeIndex.value)];
+  if (amount == undefined) {  // 指定された時刻のデータがない場合
+    return 0;
   }
   return amount;
 }
@@ -260,7 +259,7 @@ setInterval(animate, 50);
 
         <!-- 陸地 -->
         <polygon
-          points="0,100 200,0 1175,0 1175,200 1100,500 1100,550 1250,950 1000,1300 900,1400 800,1400 850,1000 750,1000 650,1200 650,1300 600,1300 550,1250 250,1300 250,1350 300,1450 250,1600 100,1600 50,1600 100,1400 100,1350 0,1350"
+          points="0,100 200,0 1175,0 1175,200 1100,500 1100,550 1250,950 1000,1300 900,1400 800,1400 850,1025 800,1025 575,1275 600,1350 550,1350 450,1250 250,1300 250,1350 300,1450 250,1600 100,1600 50,1600 100,1400 100,1350 0,1350"
           fill="rgb(255,245,219)"
         />
 
@@ -293,14 +292,6 @@ setInterval(animate, 50);
           :animation-time-step="animationTimeStep"
         />
 
-        <StationNoFlow
-          v-for="item in stationsNoFlow"
-          :key="item.name"
-          :name="item.name"
-          :point="item.point"
-          :size="item.size"
-        />
-
         <Station
           v-for="item in stations"
           :key="item.name"
@@ -315,6 +306,8 @@ setInterval(animate, 50);
         <!-- 凡例 -->
         <Legend />
 
+        <!-- 時刻 -->
+        <text x="1195" y="1495" font-size="20" text-anchor="end">{{ formatDate(date) + " " + formatTime(timeIndex)}}</text>
       </svg>
     </div>
   </div>

@@ -27,7 +27,7 @@ const props = defineProps({
   <rect
     fill="rgb(255,255,255)"
     stroke="rgb(150,150,150)"
-    stroke-width="3"
+    stroke-width="2"
     :x="point.x - size / 2"
     :y="point.y - size / 2"
     :width="size"
@@ -38,7 +38,7 @@ const props = defineProps({
   <line
     v-if="isSwitch"
     stroke="rgb(150,150,150)"
-    stroke-width="3"
+    stroke-width="2"
     :x1="point.x - size / 2"
     :y1="point.y - size / 2"
     :x2="point.x + size / 2"
@@ -47,7 +47,7 @@ const props = defineProps({
   <line
     v-if="isSwitch"
     stroke="rgb(150,150,150)"
-    stroke-width="3"
+    stroke-width="2"
     :x1="point.x + size / 2"
     :y1="point.y - size / 2"
     :x2="point.x - size / 2"

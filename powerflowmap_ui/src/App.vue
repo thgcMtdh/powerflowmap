@@ -11,7 +11,6 @@ import Station from "./components/Station.vue";
 import lines from "./assets/lines.json";
 import linesNoFlow from "./assets/linesNoFlow.json";
 import stations from "./assets/stations.json";
-import stationsNoFlow from "./assets/stationsNoFlow.json";
 import './assets/main.css';
 import { calcFlowData } from './scripts/calcFlowData.js';
 

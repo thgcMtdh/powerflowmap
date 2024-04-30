@@ -245,6 +245,7 @@ setInterval(animate, 50);
             :min-date="new Date(2023, 1, 1)"
             :max-date="new Date()"
             locale="ja-JP"
+            week-start="0"
             year-first
           />
           <button @click="decreaseDate" class="button-basic"> 前日 </button>

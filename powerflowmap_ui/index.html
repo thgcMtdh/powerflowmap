@@ -19,17 +19,10 @@
   </head>
   <body>
     <div class="title-bar">
-      <h1>基幹送電線潮流実績可視化サイト(仮)</h1>
+      <h1>基幹送電線潮流実績可視化サイト</h1>
       <h2>～電力の流れを見てみよう～</h2>
     </div>
     <div class="container">
-      <div class="text-box-introduction">
-        <p>主要な送電線の30分ごとの電力潮流(電力の流れ)を可視化するサイトです。</p>
-      </div>
-      <div class="text-box-warning">
-        <p>【免責事項】本サイトは<a href="https://www.occto.or.jp/keitoujouhou/index.html">電力広域的運営推進機関(OCCTO)が公開するデータ</a>を基に作成されていますが、<span style="font-weight: bold;">データの正確性については保証いたしません。</span>本サイトの情報について関係する事業者に問い合わせを行うことはご遠慮ください。</p>
-      </div>
-
       <div id="app"></div>
   
       <div class="text-box-attention">
@@ -43,7 +36,21 @@
           </ul>
         </ul>
       </div>
-      <p><span style="font-size: 0.8em;">Source code can be found on <a href="https://github.com/thgcMtdh/powerflowmap">GitHub</a>.</span></p>
+
+      <div class="text-box-warning">
+        <p>【免責事項】</p>
+        <ul>
+          <li>本サイトは<a href="https://www.occto.or.jp/keitoujouhou/index.html">電力広域的運営推進機関(OCCTO)</a>の系統情報サービスで一般公開されている地内基幹送電線潮流実績を可視化するものですが、データの正確性については保証いたしません。</li>
+          <li>本サイトの情報について関係する事業者に問い合わせを行うことはご遠慮ください。</li>
+          <li>予告なく公開を一時停止することがあります。</li>
+          <li>一部の送電線については推定値が含まれます。</li>
+        </ul>
+      </div>
+      <p>【更新情報】<br>
+        2024/4/29 <a href="https://shikiblog.link/index.php/2024/04/29/add-tonai-keitou/">都内供給系統を追加しました
+        </a>
+      </p>
+      <p><span style="font-size: 0.8em;">Source code is available at <a href="https://github.com/thgcMtdh/powerflowmap">GitHub</a>.</span></p>
     </div>
   </body>
 </html>

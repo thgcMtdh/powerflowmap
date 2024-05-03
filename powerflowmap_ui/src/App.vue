@@ -242,9 +242,9 @@ setInterval(animate, 50);
               class="slider-orange"
             />
           </div>
-          <button @click="startStopButton" class="button-basic button-small">{{ timeAnimIntervId == null ? "▶" : "■" }}</button>
-          <button @click="decreaseTime" class="button-basic">30分前</button>
-          <button @click="increaseTime" class="button-basic">30分後</button>
+          <!-- <button @click="startStopButton" class="button-basic button-small">{{ timeAnimIntervId == null ? "▶" : "■" }}</button> -->
+          <!-- <button @click="decreaseTime" class="button-basic">30分前</button> -->
+          <!-- <button @click="increaseTime" class="button-basic">30分後</button> -->
         </div>
       </div>
     </div>

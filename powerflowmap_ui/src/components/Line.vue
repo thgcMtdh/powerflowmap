@@ -20,6 +20,7 @@ const strokeEdgeWidth = computed(() => {
   if (props.voltage == 1000) return 6;
   if (props.voltage == 500) return 6;
   if (props.voltage == 275) return 3;
+  if (props.voltage == 220) return 3;
   return 6;
 })
 

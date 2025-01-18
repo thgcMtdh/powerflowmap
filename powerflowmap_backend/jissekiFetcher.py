@@ -64,11 +64,13 @@ def fetch_csv(date: datetime.date, area: str) -> None:
     # ファイルのダウンロード先を環境変数で指定
     options.add_experimental_option("prefs", {"download.default_directory": save_dir})
 
+    # 処理負荷削減のためヘッドレスモード
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--window-size=1280,720")
+
     # ラズパイの場合の設定
     if platform.system() == "Linux" and platform.machine() == "aarch64":
-        options.add_argument("--headless")  # 処理負荷削減のためヘッドレスモード
-        options.add_argument("--no-sandbox")
-        options.add_argument("--window-size=1280,720")
         user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.98 Safari/537.36"
         options.add_argument(f"user-agent={user_agent}")
         # options.add_argument("--ignore-certificate-erorrs")

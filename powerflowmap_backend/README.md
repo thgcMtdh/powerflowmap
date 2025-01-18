@@ -35,17 +35,24 @@ FLOW_FOLDER_PATH/
 
 ## 開発用サーバーの利用
 
-Python 3.7.3 (venv を利用) を使います。※Raspberry Pi OS (Buster) で動かすためにいささか古いバージョンを使用している
+さくらのレンタルサーバーで利用可能な Python 3.8 を使います
 
-#### Python 3.7.3 のインストール
+### 環境構築
+
+#### Python 3.8 のインストール
 
 - [Python環境構築ガイド - python.jp](https://www.python.jp/install/install.html) 等を参考にお使いのOSに合わせて実施
 
 #### 仮想環境の作成と起動
 
 ```sh
-python3.7 -m venv .venv
-source .venv/bin/activate
+# linux
+python3.8 -m venv venv
+source venv/bin/activate
+
+# windows
+py -3.8 -m venv venv
+./venv/Scripts/activate
 ```
 
 #### パッケージのインストール
@@ -53,3 +60,12 @@ source .venv/bin/activate
 ```sh
 python -m pip install -r requirements.txt
 ```
+
+### 動作テスト
+
+#### 潮流実績スクレイピング
+
+```sh
+python jissekiFetcher.py
+```
+を実行し、.env で指定したフォルダ内に、本日のCSVデータが保存されれば成功

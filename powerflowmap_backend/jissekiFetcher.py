@@ -29,16 +29,17 @@ AREANAME_DICT = {
 
 
 def main() -> None:
-    area = "kyushu"
-    the_date = datetime.date(2023,4,1)
-    while the_date <= datetime.date.today():
-        try:
-            fetch_csv(the_date, area)
-            print(the_date, "end")
-            the_date = the_date + datetime.timedelta(days=1)
-        except Exception as e:
-            print(e)
-            print("Try again...")
+    area_list = ["tokyo", "kyushu"]
+    for area in area_list:
+        the_date = datetime.date.today()
+        while the_date <= datetime.date.today():
+            try:
+                fetch_csv(the_date, area)
+                print(area, the_date, "end")
+                the_date = the_date + datetime.timedelta(days=1)
+            except Exception as e:
+                print(e)
+                print("Try again...")
 
 def fetch_csv(date: datetime.date, area: str) -> None:
     """
@@ -74,7 +75,6 @@ def fetch_csv(date: datetime.date, area: str) -> None:
         options.binary_location = "/usr/bin/chromium-browser"
         service = Service("/usr/bin/chromedriver")
     else:
-        options.add_argument("--headless")  # 処理負荷削減のためヘッドレスモード
         service = Service()
 
     # ChromeDriver起動

@@ -29,18 +29,16 @@ AREANAME_DICT = {
 
 
 def main() -> None:
-    area = "tokyo"
-    the_date = datetime.date.today()
+    area = "kyushu"
+    the_date = datetime.date(2023,4,1)
     while the_date <= datetime.date.today():
         try:
             fetch_csv(the_date, area)
-        except UnicodeDecodeError as e:
+            print(the_date, "end")
+            the_date = the_date + datetime.timedelta(days=1)
+        except Exception as e:
             print(e)
             print("Try again...")
-
-        print(the_date, "end")
-        the_date = the_date + datetime.timedelta(days=1)
-
 
 def fetch_csv(date: datetime.date, area: str) -> None:
     """
@@ -76,6 +74,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
         options.binary_location = "/usr/bin/chromium-browser"
         service = Service("/usr/bin/chromedriver")
     else:
+        options.add_argument("--headless")  # 処理負荷削減のためヘッドレスモード
         service = Service()
 
     # ChromeDriver起動
@@ -156,7 +155,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
         ok_btn.click()
 
         # ダウンロードが終わるまで待機
-        time.sleep(5)
+        time.sleep(1)
         while [x for x in os.listdir(save_dir) if x.endswith(("crdownload", "tmp"))]:
             time.sleep(1)
 

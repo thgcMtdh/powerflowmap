@@ -289,7 +289,7 @@
         "labelPosition": { "x": 0, "y": 0 }
     },
     {
-        "name": "諌早",
+        "name": "諫早",
         "point": { "x": 175, "y": 725 },
         "size": 25,
         "labelPosition": { "x": 0, "y": 0 }
@@ -326,6 +326,7 @@
     },
     {
         "name": "大平",
+        "isSwitch": true,
         "point": { "x": 470, "y": 1000 },
         "size": 25,
         "labelPosition": { "x": 0, "y": 0 }
@@ -387,6 +388,7 @@
     },
     {
         "name": "高野",
+        "isSwitch": true,
         "point": { "x": 625, "y": 1225 },
         "size": 25,
         "labelPosition": { "x": 0, "y": 0 }

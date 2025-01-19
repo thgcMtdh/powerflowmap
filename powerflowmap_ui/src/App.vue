@@ -216,7 +216,7 @@ watch(area, (newArea) => {
 
 fetchAssets();
 // setCurrentDateAndTime();
-// setInterval(animate, 50);
+setInterval(animate, 50);
 fetchFlowData();
 
 </script>
@@ -292,13 +292,13 @@ fetchFlowData();
         <polygon :points="coastline" fill="rgb(255,245,219)" />
 
         <!-- デバッグ用 50px ごとのグリッド線 -->
-        <line v-for="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]"  
+        <!-- <line v-for="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]"  
           :key="i" :x1="0" :y1="i * 50" :x2="1200" :y2="i * 50" fill="none" stroke="#888"
         />
         <line
           v-for="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]"  
           :key="i" :x1="i * 50" :y1="0" :x2="i * 50" :y2="1200" fill="none" stroke="#888"
-        />
+        /> -->
 
         <LineNoFlow
           v-for="item in linesNoFlow"

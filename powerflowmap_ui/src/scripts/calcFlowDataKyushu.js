@@ -24,11 +24,24 @@ export function calcFlowDataKyushu(csv) {
     flowData['熊本幹線'] = rawdata['熊本幹線'];
     flowData['脊振幹線'] = rawdata['脊振幹線'];
     flowData['佐賀幹線'] = rawdata['佐賀幹線'];
+    flowData['玄海幹線２Ｌ北線'] = arraySum(
+        [rawdata['北九州幹線'], rawdata['脊振幹線'], rawdata['玄海幹線２Ｌ南線'], rawdata['脊振西福岡線'], rawdata['脊振伊都線'], rawdata['脊振鳥栖線']],
+        [1, 1, -1, -1, -1, -1]
+    );
     flowData['玄海幹線２Ｌ南線'] = rawdata['玄海幹線２Ｌ南線'];
     flowData['中九州幹線'] = rawdata['中九州幹線'];
     flowData['南九州幹線'] = rawdata['南九州幹線'];
+    flowData['苓北火力線'] = arraySum(
+        [rawdata['中九州幹線'], rawdata['南九州幹線'], rawdata['中九州南熊本線'], rawdata['中九州大平線']],
+        [1, -1, 1, -1]
+    )
     flowData['日向幹線'] = rawdata['日向幹線'];
+    flowData['小丸川幹線'] = arraySum(
+        [rawdata['宮崎幹線'], rawdata['宮崎分岐線']],
+        [1, -1]
+    );
     flowData['宮崎幹線'] = rawdata['宮崎幹線'];
+
 
     // 220kV
     flowData['西谷門司線A'] = rawdata['西谷門司線'];
@@ -51,6 +64,7 @@ export function calcFlowDataKyushu(csv) {
     flowData['筑豊線'] = rawdata['筑　豊　線'];
     flowData['東福岡住吉線'] = rawdata['東福岡住吉線'];
     flowData['中央南福岡線'] = rawdata['中央南福岡線'];
+    flowData['脊振西福岡線'] = rawdata['脊振西福岡線'];
     flowData['脊振伊都線'] = rawdata['脊振伊都線'];
     flowData['大分北線A'] = rawdata['大分北　線'];
     flowData['大分北線B'] = arraySum(
@@ -129,6 +143,16 @@ export function calcFlowDataKyushu(csv) {
         [1, -1]
     );
     flowData['宮崎分岐線'] = rawdata['宮崎分岐線'];
+    flowData['高野線A'] = rawdata['高　野　線'];
+    flowData['高野線B'] = arraySum(
+        [rawdata['高　野　線'], rawdata['霧島分岐線']],
+        [1, 1]
+    );
+    flowData['霧島分岐線'] = rawdata['霧島分岐線'];
+    flowData['都城線'] = rawdata['都　城　線'];
+    flowData['鹿児島南線'] = rawdata['鹿児島南線'];
+    flowData['新鹿児島線'] = rawdata['新鹿児島線'];
+    flowData['大隅線'] = rawdata['大　隅　線'];
 
     return flowData;
 }

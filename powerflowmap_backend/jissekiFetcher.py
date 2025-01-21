@@ -35,11 +35,15 @@ def main() -> None:
         while the_date <= datetime.date.today():
             try:
                 fetch_csv(the_date, area)
-                print(area, the_date, "end")
+                print(the_date, area, "end")
                 the_date = the_date + datetime.timedelta(days=1)
-            except Exception as e:
+            except UnicodeDecodeError as e:
                 print(e)
                 print("Try again...")
+            except Exception as e:
+                print(e)
+                print("Unexpected error, break!")
+                break
 
 def fetch_csv(date: datetime.date, area: str) -> None:
     """

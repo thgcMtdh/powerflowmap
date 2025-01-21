@@ -61,6 +61,11 @@ def fetch_csv(date: datetime.date, area: str) -> None:
     flow_dir = os.getenv("FLOW_FOLDER_PATH") # Windows だと / ではなく \\ で区切らないとダメっぽい
     save_dir = os.path.join(flow_dir, area)  # エリアごとに別の保存先フォルダを指定
 
+    # 一時ファイルの削除
+    for filename in os.listdir(save_dir):
+        if filename.endswith(("crdownload", "tmp")):
+            os.remove(os.path.join(save_dir, filename))
+
     # ChromeDriver のオプション設定
     options = Options()
 

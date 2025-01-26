@@ -1,0 +1,432 @@
+[
+    {
+        "name": "北九州",
+        "point": { "x": 700, "y": 300 },
+        "size": 40,
+        "labelPosition": { "x": 25, "y": 15 }
+    },
+    {
+        "name": "豊前",
+        "point": { "x": 800, "y": 400 },
+        "size": 40,
+        "labelPosition": { "x": -20, "y": 40 }
+    },
+    {
+        "name": "中央",
+        "point": { "x": 550, "y": 510 },
+        "size": 40,
+        "labelPosition": { "x": 30, "y": 10 }
+    },
+    {
+        "name": "脊振",
+        "point": { "x": 350, "y": 500 },
+        "size": 40,
+        "labelPosition": { "x": -50, "y": 40 }
+    },
+    {
+        "name": "西九州",
+        "point": { "x": 150, "y": 575 },
+        "size": 40,
+        "labelPosition": { "x": 40, "y": -30 }
+    },
+    {
+        "name": "東九州",
+        "point": { "x": 1000, "y": 550 },
+        "size": 40,
+        "labelPosition": { "x": -110, "y": 20 }
+    },
+    {
+        "name": "熊本",
+        "point": { "x": 550, "y": 725 },
+        "size": 40,
+        "labelPosition": { "x": 0, "y": 0 }
+    },
+    {
+        "name": "中九州",
+        "point": { "x": 500, "y": 900 },
+        "size": 40,
+        "labelPosition": { "x": 30, "y": 0 }
+    },
+    {
+        "name": "苓北",
+        "point": { "x": 300, "y": 950 },
+        "size": 40,
+        "labelPosition": { "x": -70, "y": 0 }
+    },
+    {
+        "name": "ひむか",
+        "point": { "x": 800, "y": 1000 },
+        "size": 40,
+        "labelPosition": { "x": 30, "y": 0 }
+    },
+    {
+        "name": "宮崎",
+        "point": { "x": 700, "y": 1150 },
+        "size": 40,
+        "labelPosition": { "x": 30, "y": 0 }
+    },
+    {
+        "name": "南九州",
+        "point": { "x": 500, "y": 1150 },
+        "size": 40,
+        "labelPosition": { "x": -80, "y": -30 }
+    },
+    {
+        "name": "西谷",
+        "point": { "x": 750, "y": 250 },
+        "size": 25,
+        "labelPosition": { "x": -10, "y": -30 }
+    },
+    {
+        "name": "門司",
+        "point": { "x": 825, "y": 100 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "苅田",
+        "point": { "x": 850, "y": 275 },
+        "size": 25,
+        "labelPosition": { "x": 10, "y": -30 }
+    },
+    {
+        "name": "南苅田",
+        "isSwitch": true,
+        "point": { "x": 900, "y": 300 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "槻田",
+        "point": { "x": 700, "y": 200 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": -20 }
+    },
+    {
+        "name": "到津",
+        "point": { "x": 690, "y": 150 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 0 }
+    },
+    {
+        "name": "上津役",
+        "point": { "x": 625, "y": 250 },
+        "size": 25,
+        "labelPosition": { "x": -10, "y": -30 }
+    },
+    {
+        "name": "若松",
+        "point": { "x": 600, "y": 100 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 0 }
+    },
+    {
+        "name": "古賀",
+        "point": { "x": 525, "y": 275 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "東福岡",
+        "point": { "x": 475, "y": 375 },
+        "size": 25,
+        "labelPosition": { "x": -50, "y": -30 }
+    },
+    {
+        "name": "筑豊",
+        "point": { "x": 625, "y": 425 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "住吉",
+        "point": { "x": 400, "y": 375 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": -30 }
+    },
+    {
+        "name": "南福岡",
+        "point": { "x": 425, "y": 425 },
+        "size": 25,
+        "labelPosition": { "x": -30, "y": -30 }
+    },
+    {
+        "name": "西福岡",
+        "point": { "x": 350, "y": 425 },
+        "size": 25,
+        "labelPosition": { "x": 10, "y": 25 }
+    },
+    {
+        "name": "赤坂",
+        "point": { "x": 350, "y": 375 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": -30 }
+    },
+    {
+        "name": "伊都",
+        "point": { "x": 300, "y": 400 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": -30 }
+    },
+    {
+        "name": "東豊前",
+        "point": { "x": 850, "y": 375 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "西大分",
+        "point": { "x": 950, "y": 500 },
+        "size": 25,
+        "labelPosition": { "x": -50, "y": -30 }
+    },
+    {
+        "name": "速見",
+        "point": { "x": 950, "y": 425 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "山家",
+        "point": { "x": 500, "y": 475 },
+        "size": 25,
+        "labelPosition": { "x": -10, "y": -30 }
+    },
+    {
+        "name": "大分",
+        "point": { "x": 1000, "y": 500 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": -30 }
+    },
+    {
+        "name": "鳥栖",
+        "point": { "x": 400, "y": 600 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": -5 }
+    },
+    {
+        "name": "木佐木",
+        "point": { "x": 375, "y": 650 },
+        "size": 25,
+        "labelPosition": { "x": -80, "y": 0 }
+    },
+    {
+        "name": "久留米",
+        "point": { "x": 450, "y": 625 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": 25 }
+    },
+    {
+        "name": "北佐賀",
+        "point": { "x": 275, "y": 600 },
+        "size": 25,
+        "labelPosition": { "x": -30, "y": 25 }
+    },
+    {
+        "name": "三池",
+        "point": { "x": 375, "y": 700 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 0 }
+    },
+    {
+        "name": "東大分",
+        "point": { "x": 1050, "y": 500 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "新大分",
+        "point": { "x": 1050, "y": 450 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "海崎",
+        "point": { "x": 1050, "y": 600 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "日田",
+        "point": { "x": 600, "y": 575 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "唐津",
+        "point": { "x": 200, "y": 425 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "武雄",
+        "point": { "x": 150, "y": 650 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "西佐世保",
+        "point": { "x": 50, "y": 650 },
+        "size": 25,
+        "labelPosition": { "x": -40, "y": -30 }
+    },
+    {
+        "name": "東佐世保",
+        "point": { "x": 100, "y": 675 },
+        "size": 25,
+        "labelPosition": { "x": -100, "y": 0 }
+    },
+    {
+        "name": "長崎",
+        "point": { "x": 125, "y": 750 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": 25 }
+    },
+    {
+        "name": "北長崎",
+        "point": { "x": 100, "y": 725 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 25 }
+    },
+    {
+        "name": "松島",
+        "point": { "x": 50, "y": 700 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": 25 }
+    },
+    {
+        "name": "諫早",
+        "point": { "x": 175, "y": 725 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "北熊本",
+        "point": { "x": 425, "y": 750 },
+        "size": 25,
+        "labelPosition": { "x": -80, "y": 0 }
+    },
+    {
+        "name": "南熊本",
+        "point": { "x": 500, "y": 850 },
+        "size": 25,
+        "labelPosition": { "x": -80, "y": 10 }
+    },
+    {
+        "name": "弓削",
+        "point": { "x": 475, "y": 775 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 10 }
+    },
+    {
+        "name": "緑川",
+        "point": { "x": 450, "y": 825 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 0 }
+    },
+    {
+        "name": "上椎葉",
+        "point": { "x": 675, "y": 850 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "大平",
+        "isSwitch": true,
+        "point": { "x": 470, "y": 1000 },
+        "size": 25,
+        "labelPosition": { "x": -30, "y": 30 }
+    },
+    {
+        "name": "八代",
+        "point": { "x": 425, "y": 950 },
+        "size": 25,
+        "labelPosition": { "x": -20, "y": -30 }
+    },
+    {
+        "name": "人吉",
+        "point": { "x": 530, "y": 1075 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "新日向",
+        "point": { "x": 850, "y": 900 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "柏田",
+        "point": { "x": 825, "y": 1125 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "一ツ瀬",
+        "point": { "x": 750, "y": 1050 },
+        "size": 25,
+        "labelPosition": { "x": -80, "y": 0 }
+    },
+    {
+        "name": "出水",
+        "point": { "x": 400, "y": 1050 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 0 }
+    },
+    {
+        "name": "川薩",
+        "isSwitch": true,
+        "point": { "x": 350, "y": 1150 },
+        "size": 25,
+        "labelPosition": { "x": -60, "y": 0 }
+    },
+    {
+        "name": "川内",
+        "point": { "x": 400, "y": 1185 },
+        "size": 25,
+        "labelPosition": { "x": 15, "y": -15 }
+    },
+    {
+        "name": "南宮崎",
+        "point": { "x": 825, "y": 1185 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "高野",
+        "isSwitch": true,
+        "point": { "x": 625, "y": 1225 },
+        "size": 25,
+        "labelPosition": { "x": -30, "y": -30 }
+    },
+    {
+        "name": "霧島",
+        "point": { "x": 550, "y": 1250 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "都城",
+        "point": { "x": 675, "y": 1225 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "鹿児島",
+        "point": { "x": 500, "y": 1300 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "新鹿児島",
+        "point": { "x": 475, "y": 1350 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    },
+    {
+        "name": "大隅",
+        "point": { "x": 625, "y": 1350 },
+        "size": 25,
+        "labelPosition": { "x": 20, "y": 0 }
+    }
+]

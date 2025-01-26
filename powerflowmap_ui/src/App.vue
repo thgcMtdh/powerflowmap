@@ -8,14 +8,12 @@ import Legend from './components/Legend.vue';
 import Line from "./components/Line.vue";
 import LineNoFlow from "./components/LineNoFlow.vue";
 import Station from "./components/Station.vue";
-import lines from "./assets/lines.json";
-import linesNoFlow from "./assets/linesNoFlow.json";
-import stations from "./assets/stations.json";
 import './assets/main.css';
 import { calcFlowData } from './scripts/calcFlowData.js';
 
 const areaOptions = [
-  {key: "tokyo", name: "東京"}
+  {key: "tokyo", name: "東京"},
+  {key: "kyushu", name: "九州"},
 ];
 const timeOptions = [
   "00:00", 
@@ -74,13 +72,19 @@ const timeIndex = ref(0);  // 0から47
 const timeAnimIntervId = ref(null);  // 時刻を進めるアニメーションのInterval ID
 const isLoading = ref(false);  // データ取得中に true となるフラグ
 
+const coastline = ref("");  // 海岸線
+const lines = ref(null);
+const linesNoFlow = ref(null);
+const stations = ref(null);
+
 const flowData = ref(null);
 const animationTimeStep = ref(0);  // 0～100の数値。潮流を表す破線の進行を指定する
 
 function setCurrentDateAndTime() {
   const now = new Date();
-  // dateを現在時刻の30分前に設定
-  date.value = new Date(date.value.setMinutes(now.getMinutes() - 30));
+  // dateを現在時刻の10分前に設定
+  // (毎時05分,35分に元データをfetchするので、毎時10分,40分にはデータが揃っている)
+  date.value = new Date(now.setMinutes(now.getMinutes() - 10));
   // timeIndexを現在のコマ(0-47)に設定
   const hours = date.value.getHours();
   const minutes = date.value.getMinutes();
@@ -180,6 +184,21 @@ function fetchFlowData() {
     });
 }
 
+function fetchAssets() {
+  fetch(`./assets_${area.value}/coastline.csv`)
+    .then((response) => { return response.text(); })
+    .then((csv) => { coastline.value = csv.replace(/\n/g, ' '); });  // 改行をスペースへ
+  fetch(`./assets_${area.value}/lines.json`)
+    .then((response) => { return response.json(); })
+    .then((json) => { lines.value = json; });
+  fetch(`./assets_${area.value}/linesNoFlow.json`)
+    .then((response) => { return response.json(); })
+    .then((json) => { linesNoFlow.value = json; });
+  fetch(`./assets_${area.value}/stations.json`)
+    .then((response) => { return response.json(); })
+    .then((json) => { stations.value = json; });
+}
+
 function animate() {
   animationTimeStep.value += 12.5;
   if (animationTimeStep.value > 100) {
@@ -191,8 +210,15 @@ watch(date, (newDate) => {
   fetchFlowData();
 });
 
+watch(area, (newArea) => {
+  fetchAssets();
+  fetchFlowData();
+});
+
+fetchAssets();
 setCurrentDateAndTime();
 setInterval(animate, 50);
+fetchFlowData();
 
 </script>
 
@@ -263,11 +289,8 @@ setInterval(animate, 50);
           fill="rgb(200,230,255)">
         </rect>
 
-        <!-- 陸地 -->
-        <polygon
-          points="0,100 200,0 1175,0 1175,200 1100,500 1100,550 1250,950 1000,1300 900,1400 800,1400 850,1025 800,1025 575,1275 600,1350 550,1350 450,1250 250,1300 250,1350 300,1450 250,1600 100,1600 50,1600 100,1400 100,1350 0,1350"
-          fill="rgb(255,245,219)"
-        />
+        <!-- 海岸線 -->
+        <polygon :points="coastline" fill="rgb(255,245,219)" />
 
         <!-- デバッグ用 50px ごとのグリッド線 -->
         <!-- <line v-for="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]"  
@@ -310,7 +333,7 @@ setInterval(animate, 50);
         />
 
         <!-- 凡例 -->
-        <Legend />
+        <Legend :area="area"/>
 
         <!-- 時刻 -->
         <text x="1195" y="1495" font-size="20" text-anchor="end">{{ formatDate(date) + " " + formatTime(timeIndex)}}</text>

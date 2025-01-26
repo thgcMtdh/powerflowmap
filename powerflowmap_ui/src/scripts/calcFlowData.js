@@ -1,3 +1,4 @@
+import { calcFlowDataKyushu } from "./calcFlowDataKyushu";
 import { calcFlowDataTokyo } from "./calcFlowDataTokyo";
 
 /**
@@ -14,6 +15,9 @@ export function calcFlowData(area, csv) {
     }
     if (area == 'tokyo') {
         return calcFlowDataTokyo(csv);
+    }
+    if (area == 'kyushu') {
+        return calcFlowDataKyushu(csv);
     }
     return null;
 }

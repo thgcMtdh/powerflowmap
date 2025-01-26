@@ -3,6 +3,22 @@ import Line from "./Line.vue";
 import LineNoFlow from "./LineNoFlow.vue";
 import Station from "./Station.vue";
 
+const props = defineProps({
+    area: String,  // エリア. 'tokyo', 'hokkaido' など
+});
+
+// 最上位電圧[kV]
+const voltage1st = {
+    'tokyo': 500,
+    'kyushu': 500,
+};
+
+// 二番目に高い電圧[kV]
+const voltage2nd = {
+    'tokyo': 275,
+    'kyushu': 220,
+};
+
 </script>
 
 <template>
@@ -40,33 +56,33 @@ import Station from "./Station.vue";
         <text x="310" y="50" font-size="20" font-weight="bold">送電線</text>
 
         <Line
-            key="送電線(500kV)"
-            name="送電線(500kV)"
-            :voltage="500"
+            key="送電線("
+            name="送電線"
+            :voltage="voltage1st[area]"
             :capacity="4000"
             :flow="0"
             :points="[{'x': 400, 'y': 40}, {'x': 450, 'y': 40}]"
             :animation-time-step="0"
         />
 
-        <text x="460" y="50" font-size="20">500kV</text>
+        <text x="460" y="50" font-size="20">{{ voltage1st[area] }}kV</text>
 
         <Line
-            key="送電線(275kV)"
-            name="送電線(275kV)"
-            :voltage="275"
+            key="送電線"
+            name="送電線"
+            :voltage="voltage2nd[area]"
             :capacity="4000"
             :flow="0"
             :points="[{'x': 550, 'y': 40}, {'x': 600, 'y': 40}]"
             :animation-time-step="0"
         />
 
-        <text x="610" y="50" font-size="20">275kV</text>
+        <text x="610" y="50" font-size="20">{{ voltage2nd[area] }}kV</text>
     
         <LineNoFlow
             key="非公開"
             name="非公開"
-            :voltage="500"
+            :voltage="voltage1st[area]"
             :capacity="4000"
             :points="[{'x': 700, 'y': 40}, {'x': 750, 'y': 40}]"
         />
@@ -74,7 +90,7 @@ import Station from "./Station.vue";
         <LineNoFlow
             key="非公開"
             name="非公開"
-            :voltage="275"
+            :voltage="voltage2nd[area]"
             :capacity="4000"
             :points="[{'x': 760, 'y': 40}, {'x': 810, 'y': 40}]"
         />

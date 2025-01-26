@@ -29,18 +29,21 @@ AREANAME_DICT = {
 
 
 def main() -> None:
-    area = "tokyo"
-    the_date = datetime.date.today()
-    while the_date <= datetime.date.today():
-        try:
-            fetch_csv(the_date, area)
-        except UnicodeDecodeError as e:
-            print(e)
-            print("Try again...")
-
-        print(the_date, "end")
-        the_date = the_date + datetime.timedelta(days=1)
-
+    area_list = ["tokyo", "kyushu"]
+    for area in area_list:
+        the_date = datetime.date.today()
+        while the_date <= datetime.date.today():
+            try:
+                fetch_csv(the_date, area)
+                print(the_date, area, "end")
+                the_date = the_date + datetime.timedelta(days=1)
+            except UnicodeDecodeError as e:
+                print(e)
+                print("Try again...")
+            except Exception as e:
+                print(e)
+                print("Unexpected error, break!")
+                break
 
 def fetch_csv(date: datetime.date, area: str) -> None:
     """
@@ -57,6 +60,11 @@ def fetch_csv(date: datetime.date, area: str) -> None:
     dotenv.load_dotenv()
     flow_dir = os.getenv("FLOW_FOLDER_PATH") # Windows だと / ではなく \\ で区切らないとダメっぽい
     save_dir = os.path.join(flow_dir, area)  # エリアごとに別の保存先フォルダを指定
+
+    # 一時ファイルの削除
+    for filename in os.listdir(save_dir):
+        if filename.endswith(("crdownload", "tmp")):
+            os.remove(os.path.join(save_dir, filename))
 
     # ChromeDriver のオプション設定
     options = Options()
@@ -156,7 +164,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
         ok_btn.click()
 
         # ダウンロードが終わるまで待機
-        time.sleep(5)
+        time.sleep(1)
         while [x for x in os.listdir(save_dir) if x.endswith(("crdownload", "tmp"))]:
             time.sleep(1)
 

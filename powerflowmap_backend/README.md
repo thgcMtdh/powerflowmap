@@ -4,6 +4,20 @@
 
 ## 初期設定
 
+### 管理用PCのPython環境構築
+
+- [Python環境構築ガイド - python.jp](https://www.python.jp/install/install.html) 等を参考にお使いのOSに合わせて実施
+
+### プロジェクトのセットアップ
+
+```sh
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+### .envファイルの作成
+
 `powerflowmap_backend/` ディレクトリ直下に手動で `.env` ファイルを作成し、潮流データの保存先ディレクトリを以下のように記述する。
 
 ```
@@ -13,6 +27,8 @@ FTP_SERVER=FTP接続用のサーバーアドレス
 FTP_USER=FTP接続用のユーザー名
 FTP_PASS=FTP接続用のパスワード
 ```
+
+### フォルダ構造の作成
 
 `LOCAL_DATA_DIR` および `SERVER_DATA_DIR` 配下に、以下のようにエリアごとのフォルダを作成する。ここにダウンロードした潮流データが蓄積されていく。
 
@@ -32,7 +48,7 @@ LOCAL_DATA_DIR および SERVER_DATA_DIR/
 
 ### fetchAndUpdate.sh
 
-- 当日の潮流実績データを取得し、サーバーにアップロードする作業を自動で実施するスクリプト。ユーザーが自分で crontab にこれを登録し、30分ごとに実行する。
+- 当日の潮流実績データを取得し、サーバーにアップロードする作業を自動で実施するスクリプト。管理用PCの crontab にこれを登録し、30分ごとに実行する。
 
 ### jissekiFetcher.py
 
@@ -44,24 +60,3 @@ LOCAL_DATA_DIR および SERVER_DATA_DIR/
 - フロントエンドの開発時に使うデバッグ用のHTTPサーバー。Flaskを使っている。
 - `https://localhost:5000/data/tokyo/jisseki_tokyo_20240101.csv` のようにURLを指定すると、`.env` ファイルで記述した `LOCAL_DATA_DIR` の中から潮流実績CSVファイルを返す。
 - 開発時にファイルを返すためだけの物なので、別の web server エミュレータが用意できればそちらを使っても構わない。その場合はフロントエンドの vite.config.js 内でプロキシ設定をよしなに書き替えること。
-
-## 開発用サーバーの利用
-
-Python 3.11 (venv を利用) を使います。
-
-#### Python 3.11 のインストール
-
-- [Python環境構築ガイド - python.jp](https://www.python.jp/install/install.html) 等を参考にお使いのOSに合わせて実施
-
-#### 仮想環境の作成と起動
-
-```sh
-python3.11 -m venv .venv
-source .venv/bin/activate
-```
-
-#### パッケージのインストール
-
-```sh
-python -m pip install -r requirements.txt
-```

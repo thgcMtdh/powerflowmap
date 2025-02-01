@@ -3,7 +3,7 @@
 ./venv/bin/python ./jissekiFetcher.py
 
 # Set variables
-source ./.env
+. ./.env
 today=$(TZ=UTC-9 date '+%Y%m%d')  # YYYYMMDD
 
 # Function to upload data via FTP

@@ -58,7 +58,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
 
     # 保存先の設定
     dotenv.load_dotenv()
-    flow_dir = os.getenv("FLOW_FOLDER_PATH") # Windows だと / ではなく \\ で区切らないとダメっぽい
+    flow_dir = os.getenv("LOCAL_DATA_DIR") # Windows だと / ではなく \\ で区切らないとダメっぽい
     save_dir = os.path.join(flow_dir, area)  # エリアごとに別の保存先フォルダを指定
 
     # 一時ファイルの削除

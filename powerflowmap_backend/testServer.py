@@ -5,7 +5,7 @@ from flask import Flask, abort, send_file
 
 dotenv.load_dotenv()  # .envファイルから環境変数の読み込み
 
-FLOW_FOLDER_PATH = os.getenv("FLOW_FOLDER_PATH")  # 潮流実績を保存したフォルダ
+LOCAL_DATA_DIR = os.getenv("LOCAL_DATA_DIR")  # 潮流実績を保存したフォルダ
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ def download_csv(area: str, filename: str):
     指定した日付,エリアの1日分の潮流実績CSVを返すエンドポイント
     usage: `/data/tokyo/jisseki_20220602.csv`
     """
-    file_path = os.path.join(FLOW_FOLDER_PATH, area, filename)
+    file_path = os.path.join(LOCAL_DATA_DIR, area, filename)
     if os.path.exists(file_path):
         return send_file(file_path, mimetype="text/csv")
     else:

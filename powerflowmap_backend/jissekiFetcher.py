@@ -230,12 +230,14 @@ if __name__ == "__main__":
     else:
         the_date = datetime.date.today()
         area_list = ["tokyo", "kyushu"]
-        for area in area_list:
-            while 1:
-                try:
-                    fetch_csv(the_date, area)
-                except UnicodeDecodeError as e:
-                    print(e)
-                    print("Try again...")
-                else:
-                    break
+        while the_date <= datetime.date.today():
+            for area in area_list:
+                while 1:
+                    try:
+                        fetch_csv(the_date, area)
+                    except UnicodeDecodeError as e:
+                        print(e)
+                        print("Try again...")
+                    else:
+                        break
+            the_date += datetime.timedelta(days=1)

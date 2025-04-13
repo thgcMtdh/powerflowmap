@@ -1,62 +1,70 @@
 # powerflowmap_backend
 
-「基幹送電線潮流実績可視化サイト」管理用のスクリプト。OCCTOサイトからデータを取得し、サーバー上のデータをFTPで更新する。フロントエンドをデバッグするためのテストサーバーも含んでいる。
+「基幹送電線潮流実績可視化サイト」のバックエンド。潮流実績データを返すAPIを提供する。実績データがない場合はOCCTOシステムからデータのスクレイピングを行う。将来的には基幹送電線以外のデータも返せるAPIを整備することを目論んでいる。
 
-## 初期設定
+## API仕様
 
-### 管理用PCのPython環境構築
+### 共通仕様
 
-- [Python環境構築ガイド - python.jp](https://www.python.jp/install/install.html) 等を参考にお使いのOSに合わせて実施
+#### エリアコード一覧表
 
-### プロジェクトのセットアップ
+|area|エリア名|
+|--- |---|
+|  1 |北海道|
+|  2 |東北|
+|  3 |東京|
+|  4 |中部|
+|  5 |北陸|
+|  6 |関西|
+|  7 |中国|
+|  8 |四国|
+|  9 |九州|
+| 10 |沖縄|
 
-```sh
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
+### 地内基幹送電線潮流実績
 
-### .envファイルの作成
+#### 概要
 
-`powerflowmap_backend/` ディレクトリ直下に手動で `.env` ファイルを作成し、潮流データの保存先ディレクトリを以下のように記述する。
+30分毎の地内基幹送電線潮流実績をCSV形式で取得する
 
-```
-LOCAL_DATA_DIR=管理用PCのデータ保存先ディレクトリの絶対パス
-SERVER_DATA_DIR=サーバー側のデータ保存先ディレクトリの絶対パス
-FTP_SERVER=FTP接続用のサーバーアドレス
-FTP_USER=FTP接続用のユーザー名
-FTP_PASS=FTP接続用のパスワード
-```
-
-### フォルダ構造の作成
-
-`LOCAL_DATA_DIR` および `SERVER_DATA_DIR` 配下に、以下のようにエリアごとのフォルダを作成する。ここにダウンロードした潮流データが蓄積されていく。
+#### エンドポイント
 
 ```
-LOCAL_DATA_DIR および SERVER_DATA_DIR/
-  ├ tokyo/
-  ├ ├ jisseki_tokyo_20240101.csv
-  ├ ├ jisseki_tokyo_20240102.csv
-  ├ └...
-  └ kyushu/
-    ├ jisseki_tokyo_20240101.csv
-    ├ jisseki_tokyo_20240102.csv
-    └...
+https://powerflowmap.shikiblog.link/api/chinaiKikanJisseki.php?area=xxx&date=xxx
+```
+- メソッド: `GET`
+- クエリ:
+  - `area`: 電力エリア. エリアコード一覧表に書かれた整数値のみ受け付ける
+  - `date`: ダウンロードしたい日付を指定する. YYYYmmdd の8桁で入力する. 未来の日付は指定できない。また、データ更新に1～2分のタイムラグがあるため、指定日当日の0:00～0:02は指定できない
+
+#### 実行例
+
+東京エリアの、2025/4/1の地内基幹送電線潮流実績を取得したい
+
+```
+https://powerflowmap.shikiblog.link/api/chinaiKikanJisseki.php?area=3&date=20250401
 ```
 
-## ファイルの説明
+#### レスポンス
 
-### fetchAndUpdate.sh
+UTF-8 エンコーディングの CSVファイルを返す
 
-- 当日の潮流実績データを取得し、サーバーにアップロードする作業を自動で実施するスクリプト。管理用PCの crontab にこれを登録し、30分ごとに実行する。
 
-### jissekiFetcher.py
+## 開発者向け
 
-- OCCTOのウェブサイトから潮流実績をスクレイピングするPythonスクリプト。
-  - 直接CSVを落とすことが出来ないので、スクレイピングを使っている。
+### ファイル構成
 
-### testServer.py
+すべて `api` フォルダ配下にまとめている。ウェブサーバに変更を反映する際は、サーバに `api/chinaiKikanJisseki.php` をアップロードする
 
-- フロントエンドの開発時に使うデバッグ用のHTTPサーバー。Flaskを使っている。
-- `https://localhost:5000/data/tokyo/jisseki_tokyo_20240101.csv` のようにURLを指定すると、`.env` ファイルで記述した `LOCAL_DATA_DIR` の中から潮流実績CSVファイルを返す。
-- 開発時にファイルを返すためだけの物なので、別の web server エミュレータが用意できればそちらを使っても構わない。その場合はフロントエンドの vite.config.js 内でプロキシ設定をよしなに書き替えること。
+```
+/ (document root)
+├ api/
+| ├ chinaiKikanJisseki.php
+  └ data/
+    └ chinaiKikanJisseki/
+      ├ ここにCSVデータが溜まっていく
+```
+
+### 環境構築
+
+PHPの開発環境が必要。筆者は Windows 環境で XAMPP + VSCode を導入している

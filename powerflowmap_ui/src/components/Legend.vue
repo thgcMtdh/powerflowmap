@@ -4,19 +4,19 @@ import LineNoFlow from "./LineNoFlow.vue";
 import Station from "./Station.vue";
 
 const props = defineProps({
-    area: String,  // エリア. 'tokyo', 'hokkaido' など
+    area: String,  // エリアコード. '1'～'10'
 });
 
 // 最上位電圧[kV]
 const voltage1st = {
-    'tokyo': 500,
-    'kyushu': 500,
+    '3': 500,
+    '9': 500,
 };
 
 // 二番目に高い電圧[kV]
 const voltage2nd = {
-    'tokyo': 275,
-    'kyushu': 220,
+    '3': 275,
+    '9': 220,
 };
 
 </script>

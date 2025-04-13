@@ -2,6 +2,7 @@ import codecs
 import datetime
 import os
 import platform
+import sys
 import time
 
 import dotenv
@@ -11,6 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
 
 OCCTO_MENU_URL = "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login#"
 
@@ -28,23 +30,6 @@ AREANAME_DICT = {
 }
 
 
-def main() -> None:
-    area_list = ["tokyo", "kyushu"]
-    for area in area_list:
-        the_date = datetime.date.today()
-        while the_date <= datetime.date.today():
-            try:
-                fetch_csv(the_date, area)
-                print(the_date, area, "end")
-                the_date = the_date + datetime.timedelta(days=1)
-            except UnicodeDecodeError as e:
-                print(e)
-                print("Try again...")
-            except Exception as e:
-                print(e)
-                print("Unexpected error, break!")
-                break
-
 def fetch_csv(date: datetime.date, area: str) -> None:
     """
     OCCTO のウェブサイトをスクレイピングして、潮流実績CSVを取得し、
@@ -58,7 +43,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
 
     # 保存先の設定
     dotenv.load_dotenv()
-    flow_dir = os.getenv("FLOW_FOLDER_PATH") # Windows だと / ではなく \\ で区切らないとダメっぽい
+    flow_dir = os.getenv("LOCAL_DATA_DIR") # Windows だと / ではなく \\ で区切らないとダメっぽい
     save_dir = os.path.join(flow_dir, area)  # エリアごとに別の保存先フォルダを指定
 
     # 一時ファイルの削除
@@ -167,6 +152,7 @@ def fetch_csv(date: datetime.date, area: str) -> None:
         time.sleep(1)
         while [x for x in os.listdir(save_dir) if x.endswith(("crdownload", "tmp"))]:
             time.sleep(1)
+        time.sleep(1)
 
         # ======
         # ファイルのリネーム。
@@ -187,6 +173,9 @@ def fetch_csv(date: datetime.date, area: str) -> None:
 
         # エンコーディングをUTF-8に変更
         convert_sjis_to_unicode(target_file_path)
+    
+    time.sleep(1)
+    print(date.strftime("%Y%m%d"), area, "fetch succeded")
 
 
 def get_latest_file(folder: str) -> str:
@@ -220,6 +209,35 @@ def convert_sjis_to_unicode(file_path):
         for row in row_data:
             f.write(row)
 
+# Specify date and area:
+#   $ python ./jissekiFetcher.py 20240401 tokyo
+# Otherwise fetch today's data of all area:
+#   $ python ./jissekiFetcher.py
 
 if __name__ == "__main__":
-    main()
+    args = sys.argv
+    if len(args) == 3:
+        the_date = datetime.datetime.strptime(args[1], "%Y%m%d")
+        area = args[2]
+        while 1:
+            try:
+                fetch_csv(the_date, area)
+            except UnicodeDecodeError as e:
+                print(e)
+                print("Try again...")
+            else:
+                break
+    else:
+        the_date = datetime.date.today()
+        area_list = ["tokyo", "kyushu"]
+        while the_date <= datetime.date.today():
+            for area in area_list:
+                while 1:
+                    try:
+                        fetch_csv(the_date, area)
+                    except UnicodeDecodeError as e:
+                        print(e)
+                        print("Try again...")
+                    else:
+                        break
+            the_date += datetime.timedelta(days=1)

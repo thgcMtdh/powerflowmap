@@ -218,7 +218,6 @@ watch(area, (newArea) => {
 fetchAssets();
 setCurrentDateAndTime();
 setInterval(animate, 50);
-fetchFlowData();
 
 </script>
 

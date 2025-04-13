@@ -435,6 +435,11 @@ function shouldUpdateCSV($targetArea, $targetDateStr, $currentDateStr, $currentT
     return false;
 }
 
+// クロスオリジン許可
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Content-Type");
+
 // クエリパラメータを取得
 $targetArea = isset($_GET['area']) ? $_GET['area'] : null;
 $targetDateStr = isset($_GET['date']) ? $_GET['date'] : null;

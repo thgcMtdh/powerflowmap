@@ -2,7 +2,7 @@
 
 「基幹送電線潮流実績可視化サイト」のフロントエンド。潮流の取得、計算、描画を行う。
 
-サーバーから取得したOCCTOの基幹送電線潮流実績CSVファイル(UTF-8にすること!)からデータを読み取り、SVGを動的に描画している。
+[grid-api](https://github.com/thgcMtdh/grid-api.git) から基幹送電線潮流実績CSVファイルを取得し、SVGを動的に描画、可視化している。
 
 ## Recommended IDE Setup
 
